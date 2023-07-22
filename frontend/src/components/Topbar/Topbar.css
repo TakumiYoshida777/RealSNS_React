@@ -1,0 +1,179 @@
+@charset "utf-8";
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+}
+
+.topbarContainer {
+    background-color: #2c517c;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.topbarLeft {
+    flex: 2;
+    margin: 0 0.25rem 0 4rem;
+}
+
+.logo {
+    color: white;
+    font-weight: bold;
+    margin-right: 0.025rem;
+}
+
+
+
+.searchbar {
+    width: 80%;
+    height: 30px;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem 0 0;
+}
+
+.searchIcon {
+    font-size: 1.25rem !important;
+    margin-left: 0.625rem;
+    margin-right: 0.5rem;
+}
+
+.searchInput {
+    border: none;
+    width: 100%;
+}
+
+.searchInput:focus {
+    outline: none;
+}
+
+.topbarCenter {
+    flex: 5;
+    position: relative;
+}
+
+.topbarItemIcons {
+    display: flex;
+    margin: 0 1rem;
+}
+
+.topbarIconItem {
+    margin-right: 15px;
+    margin-top: 5px;
+    cursor: pointer;
+    position: relative;
+    color: #fff;
+}
+
+
+.topbarRight {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+
+.topbarIconBadge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #db6ab9;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+}
+
+.topbarImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+/*******
+**スマホ縦**
+********/
+
+/**********
+**スマホ縦 END**
+***********/
+/*************************** 
+スマホ縦向き iPhonePro 376px以上
+****************************/
+@media (min-width: 376px) {}
+
+/*************************** 
+スマホ縦向き 376px以上 END
+****************************/
+
+/*************************** 
+スマホ横向き 481px以上
+****************************/
+@media (min-width: 481px) {}
+
+/*************************** 
+スマホ横向き 481px以上 END
+****************************/
+/*************************** 
+タブレットの縦向き 601px以上 
+****************************/
+@media (min-width: 601px) {}
+
+/*************************** 
+タブレットの縦向き 601px以上 END
+****************************/
+/*************************** 
+iPad Proの縦向き 1024px以上 
+****************************/
+@media (min-width: 1024px) {
+    .topbarContainer {
+        background-color: #2c517c;
+        height: 50px;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .searchbar {
+        width: 100%;
+    }
+
+    .topbarRight {
+        justify-content: space-around;
+    }
+}
+
+/*************************** 
+タブレットの縦向き 1024px以上 END
+****************************/
+
+/*************************** 
+スマホ縦向き  360px 以下
+****************************/
+@media (max-width: 360px) {
+    .searchbar {
+        width: 70%;
+    }
+}
+
+/*************************** 
+スマホ縦向き 376px以下 END
+****************************/

@@ -1,0 +1,89 @@
+.searchResultList {
+    position: absolute;
+    background-color: aliceblue;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    width: 80%;
+    border-radius: 8px;
+    padding: 0.875rem;
+    bottom: -auto;
+    line-height: 2rem;
+}
+
+.userData {
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.userData:hover {
+    background-color: rgb(215, 228, 240);
+}
+
+.closeBtn {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-top: 1px solid rgb(207, 207, 207);
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+    border-radius: 2px;
+
+}
+
+.closeBtn:hover {
+    background-color: rgb(215, 228, 240);
+
+}
+
+/*******
+**スマホ縦**
+********/
+
+/**********
+**スマホ縦 END**
+***********/
+/*************************** 
+スマホ縦向き iPhonePro 376px以上
+****************************/
+@media (min-width: 376px) {}
+
+/*************************** 
+スマホ縦向き 376px以上 END
+****************************/
+
+/*************************** 
+スマホ横向き 481px以上
+****************************/
+@media (min-width: 481px) {}
+
+/*************************** 
+スマホ横向き 481px以上 END
+****************************/
+/*************************** 
+タブレットの縦向き 601px以上 
+****************************/
+@media (min-width: 601px) {}
+
+/*************************** 
+タブレットの縦向き 601px以上 END
+****************************/
+/*************************** 
+iPad Proの縦向き 1024px以上 
+****************************/
+@media (min-width: 1024px) {
+    .searchResultList {
+        width: 100%;
+    }
+}
+
+/*************************** 
+タブレットの縦向き 1024px以上 END
+****************************/
+
+/*************************** 
+スマホ縦向き  360px 以下
+****************************/
+@media (max-width: 360px) {}
+
+/*************************** 
+スマホ縦向き 376px以下 END
+****************************/

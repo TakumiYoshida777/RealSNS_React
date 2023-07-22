@@ -1,0 +1,46 @@
+.ModalComment {
+    position: fixed;
+    width: 80%;
+    height: 82vh;
+    background-color: rgba(67, 83, 83, 0.795);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    padding: 2rem 2rem 0 2rem;
+    z-index: 1000;
+}
+
+.targetPost {
+    background-color: #fffef8;
+    color: black;
+    border-radius: 4px;
+    border: none;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.textarea {
+    background-color: #fffef8;
+
+}
+
+.commentBtn {
+    background-color: rgb(168, 168, 235);
+    width: 6rem;
+    height: 2rem;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.commentList {
+    height: 70%;
+    overflow-y: auto;
+}

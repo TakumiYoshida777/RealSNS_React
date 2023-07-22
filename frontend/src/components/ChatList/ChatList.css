@@ -1,0 +1,107 @@
+.chatListContainer {
+    flex-grow: 1;
+    min-width: 150px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #f8fcff;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    padding: 0.875rem;
+}
+
+.chatListContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.chat {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+.listItem {
+    margin-bottom: 0.25rem;
+}
+
+.sendUser {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.chatImgWrap {
+    position: relative;
+}
+
+.readMark {
+    position: absolute;
+    bottom: 1rem;
+    right: 0px;
+    background-color: #db6ab9;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+
+}
+
+
+
+
+/*******
+**スマホ縦**
+********/
+
+/**********
+**スマホ縦 END**
+***********/
+/*************************** 
+スマホ縦向き iPhonePro 376px以上
+****************************/
+@media (min-width: 376px) {}
+
+/*************************** 
+スマホ縦向き 376px以上 END
+****************************/
+
+/*************************** 
+スマホ横向き 481px以上
+****************************/
+@media (min-width: 481px) {}
+
+/*************************** 
+スマホ横向き 481px以上 END
+****************************/
+/*************************** 
+タブレットの縦向き 601px以上 
+****************************/
+@media (min-width: 601px) {
+    .allMessage {
+        pointer-events: none;
+    }
+}
+
+/*************************** 
+タブレットの縦向き 601px以上 END
+****************************/
+/*************************** 
+iPad Proの縦向き 1024px以上 
+****************************/
+@media (min-width: 1024px) {}
+
+/*************************** 
+タブレットの縦向き 1024px以上 END
+****************************/
+
+/*************************** 
+スマホ縦向き  360px 以下
+****************************/
+@media (max-width: 360px) {}
+
+/*************************** 
+スマホ縦向き 376px以下 END
+****************************/

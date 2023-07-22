@@ -1,0 +1,150 @@
+@charset "utf-8";
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    background-color: #f8fcff;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    z-index: 999;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.sidebarWrapper {
+    padding: 1.25rem;
+}
+
+.sidebarList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebarListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.625rem;
+    padding: 4px 6px;
+    cursor: pointer;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.sidebarListItem:hover {
+    box-shadow: none;
+    transform: translateY(4px);
+}
+
+.sidebarListItemText {
+    font-size: 1.125rem;
+    padding-top: 3px;
+}
+
+.sidebarIcon {
+    font-size: 2em !important;
+}
+
+.sidebarHr {
+    margin: 1.25rem 0;
+}
+
+.sidebarFriendImg {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    margin-right: 0.625rem;
+}
+
+.sidebarFriend {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.mask {
+    position: fixed;
+    z-index: -100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(133, 133, 133, 0.596); */
+}
+
+.sidebarButtomTitle {
+    margin-bottom: 0.5rem;
+}
+
+/*******
+**スマホ縦**
+********/
+
+/**********
+**スマホ縦 END**
+***********/
+/*************************** 
+スマホ縦向き iPhonePro 376px以上
+****************************/
+@media (min-width: 376px) {}
+
+/*************************** 
+スマホ縦向き 376px以上 END
+****************************/
+
+/*************************** 
+スマホ横向き 481px以上
+****************************/
+@media (min-width: 481px) {
+    .sidebar {
+        width: 220px;
+    }
+}
+
+/*************************** 
+スマホ横向き 481px以上 END
+****************************/
+/*************************** 
+タブレットの縦向き 601px以上 
+****************************/
+@media (min-width: 601px) {
+    .sidebar {
+        position: sticky;
+        left: 300px;
+        width: 280px;
+        padding-top: 0;
+    }
+
+    .sidebarListItemText {
+        padding-top: 3px;
+    }
+
+    .sidebarIcon {
+        font-size: 2em !important;
+    }
+
+    .sidebarHr {
+        margin: 1.25rem 0;
+    }
+}
+
+/*************************** 
+タブレットの縦向き 601px以上 END
+****************************/
+/*************************** 
+iPad Proの縦向き 1024px以上 
+****************************/
+@media (min-width: 1024px) {}
+
+/*************************** 
+タブレットの縦向き 1024px以上 END
+****************************/
+
+/*************************** 
+スマホ縦向き  360px 以下
+****************************/
+@media (max-width: 360px) {}
+
+/*************************** 
+スマホ縦向き 376px以下 END
+****************************/

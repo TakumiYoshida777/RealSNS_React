@@ -1,0 +1,17 @@
+.commentCard {
+    display: flex;
+    padding: 0.875rem;
+    gap: 1rem;
+    background-color: rgb(249, 252, 255);
+    color: black;
+    margin-bottom: 0.875rem;
+    border-radius: 4px;
+}
+
+.commentWrap {
+    flex-grow: 1;
+}
+
+.commentUserName {
+    font-weight: 600;
+}

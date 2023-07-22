@@ -1,0 +1,151 @@
+@charset "utf-8";
+
+.share {
+    width: 100%;
+    height: 170px;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    top: 0px;
+    background-color: #f8fcff;
+
+}
+
+.shareWrapper {
+    padding: 0.625rem;
+}
+
+.shareTop {
+    display: flex;
+    align-items: center;
+}
+
+.shareProfileImg {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.625rem;
+}
+
+.shareInput {
+    border: none;
+    width: 80%;
+    height: 1.5rem;
+}
+
+.shareInput:focus {
+    outline: none;
+}
+
+
+
+.shareHr {
+    margin: 1.25rem;
+}
+
+.chareButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shareButtons {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+
+}
+
+.shareOptions {
+    display: flex;
+}
+
+.shareOption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.shareButton {
+    background-color: rgb(80, 106, 141);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 4em;
+    height: 2rem;
+}
+
+.shareIcon {
+    margin-right: 3px;
+}
+
+.shareOptionText {
+    font-size: 0.75rem;
+    font-weight: 650;
+}
+
+.shareButton {
+    border: none;
+
+
+}
+
+
+/*******
+**スマホ縦**
+********/
+
+/**********
+**スマホ縦 END**
+***********/
+/*************************** 
+スマホ縦向き iPhonePro 376px以上
+****************************/
+@media (min-width: 376px) {}
+
+/*************************** 
+スマホ縦向き 376px以上 END
+****************************/
+
+/*************************** 
+スマホ横向き 481px以上
+****************************/
+@media (min-width: 481px) {}
+
+/*************************** 
+スマホ横向き 481px以上 END
+****************************/
+/*************************** 
+タブレットの縦向き 601px以上 
+****************************/
+@media (min-width: 601px) {}
+
+/*************************** 
+タブレットの縦向き 601px以上 END
+****************************/
+/*************************** 
+iPad Proの縦向き 1024px以上 
+****************************/
+@media (min-width: 1024px) {
+    .shareOption {
+        flex-direction: row;
+    }
+
+    .shareButton {
+        padding: 0.25px 1rem;
+    }
+}
+
+/*************************** 
+タブレットの縦向き 1024px以上 END
+****************************/
+
+/*************************** 
+スマホ縦向き  360px 以下
+****************************/
+@media (max-width: 360px) {}
+
+/*************************** 
+スマホ縦向き 376px以下 END
+****************************/

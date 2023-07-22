@@ -1,0 +1,33 @@
+.followerWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+.followUser {
+    cursor: pointer;
+    gap: 1em;
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.followerImg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.username {
+    font-size: 0.75rem;
+}
+
+.desc {
+    font-size: 0.5rem;
+}

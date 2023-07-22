@@ -1,0 +1,188 @@
+.modal {
+    position: fixed;
+    width: 90%;
+    height: 100vh;
+    background-color: rgba(67, 83, 83, 0.822);
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    padding: 2rem 2rem 0 2rem;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.messageInnerContainer {
+    height: calc(70vh + 120px);
+    background-color: #d3e9df;
+    overflow-y: auto;
+    padding: 0 1rem;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.message {
+    /* width: 80%;
+    margin: 0 auto; */
+    display: flex;
+
+}
+
+.messageCard {
+    color: black;
+    background-color: #fffff6;
+    display: flex;
+    gap: 1rem;
+}
+
+.messageRight {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.messageCardRight {
+    width: 300px;
+    height: auto;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    border-radius: 10px;
+    margin: 1rem 0;
+    padding: 1rem;
+    color: black;
+    background-color: #fffff6;
+    display: flex;
+    gap: 1rem;
+}
+
+.modalHeader {
+    border-bottom: 1px solid #fff;
+    height: 2rem;
+    position: relative;
+
+}
+
+.targetUserName {
+    text-align: center;
+    font-size: large;
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 0;
+    cursor: pointer;
+}
+
+.textarea {
+    width: 60%;
+    border: none;
+    border-radius: 4px;
+    height: 3.5rem;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.sendInput {
+    border: none;
+    border-radius: 4px;
+    height: 2rem;
+    width: 100%;
+}
+
+.sendMessage {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    max-width: 1024px;
+    margin: 0 auto;
+
+}
+
+.modalSubmitBtn {
+    background-color: #fff;
+    border-radius: 4px;
+    width: 4rem;
+    height: 2rem;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    gap: 2%;
+}
+
+/*******
+**スマホ縦**
+********/
+
+/**********
+**スマホ縦 END**
+***********/
+/*************************** 
+スマホ縦向き iPhonePro 376px以上
+****************************/
+@media (min-width: 376px) {}
+
+/*************************** 
+スマホ縦向き 376px以上 END
+****************************/
+
+/*************************** 
+スマホ横向き 481px以上
+****************************/
+@media (min-width: 481px) {}
+
+/*************************** 
+スマホ横向き 481px以上 END
+****************************/
+/*************************** 
+タブレットの縦向き 601px以上 
+****************************/
+@media (min-width: 601px) {
+    .sendInput {
+        height: 3rem;
+        width: 40%;
+    }
+
+    .textarea {
+        width: 70%;
+    }
+
+    .sendMessage {
+        flex-direction: row;
+
+    }
+
+    .modalSubmitBtn {
+        width: 3rem;
+        height: 2rem;
+    }
+
+    .messageInnerContainer {
+        padding: 1rem 3rem;
+    }
+
+}
+
+/*************************** 
+タブレットの縦向き 601px以上 END
+****************************/
+/*************************** 
+iPad Proの縦向き 1024px以上 
+****************************/
+@media (min-width: 1024px) {}
+
+/*************************** 
+タブレットの縦向き 1024px以上 END
+****************************/
+
+/*************************** 
+スマホ縦向き  360px 以下
+****************************/
+@media (max-width: 360px) {}
+
+/*************************** 
+スマホ縦向き 376px以下 END
+****************************/

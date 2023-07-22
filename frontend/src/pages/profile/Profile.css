@@ -1,0 +1,249 @@
+@charset "utf-8";
+
+.Profile {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fcff;
+}
+
+.profileRight {
+    width: 100%;
+}
+
+.profileCover {
+    height: 320px;
+    position: relative;
+}
+
+
+
+.profileCoverImg {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.profileUserImg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+    top: 150px;
+    object-fit: cover;
+}
+
+.profileInfoDesc {
+    width: 400px;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    word-wrap: break-word;
+    margin-bottom: 1rem;
+    width: 65%;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+
+.profileInfoName {
+    font-size: 1.5rem;
+}
+
+.profileRightBottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.editBtn {
+    margin: 1rem 0;
+    background-color: rgb(80, 106, 141);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 2rem;
+    border: none;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    transition: all 0.2s;
+    padding: 0 0.5rem;
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem;
+    width: 56px;
+    font-size: 0.75rem;
+}
+
+.profileCoverEditBtn {
+    position: absolute;
+    font-size: 0.75rem;
+    right: 4%;
+    top: 0;
+    padding: 0.25rem 0.5rem;
+}
+
+.profileCoverRegisterBtn {
+    position: absolute;
+    font-size: 0.75rem;
+    right: 4%;
+    top: 50px;
+    padding: 0.25rem 0.5rem;
+}
+
+.editBtn:hover {
+    background-color: rgb(33, 63, 102);
+}
+
+.followBtn {
+    /* position: absolute; */
+    background-color: rgb(80, 106, 141);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 2rem;
+    border: none;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    transition: all 0.2s;
+    padding: 0 0.5rem;
+    /* top: 0; */
+}
+
+.followBtn:hover {
+    background-color: rgb(33, 63, 102);
+}
+
+.followBtn:active {
+    transform: translateY(4px);
+}
+
+.sendMessageBtn {
+    background-color: rgb(80, 106, 141);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 2rem;
+    border: none;
+    box-shadow: 3px 7px 13px -10px #657b9f;
+    transition: all 0.2s;
+    padding: 0 0.5rem;
+}
+
+.sendMessageBtn:hover {
+    background-color: rgb(33, 63, 102);
+}
+
+.sendMessageBtn:active {
+    transform: translateY(4px);
+}
+
+.followStateWrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.followsWrap {
+    margin-left: 2rem;
+
+}
+
+.profileWrap {
+    margin-right: 2rem;
+}
+
+.profileFlexWrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.follow,
+.followers {
+    border-bottom: 1px solid #657b9f;
+}
+
+/*************************** 
+スマホ縦向き iPhonePro 376px以上
+****************************/
+@media (min-width: 376px) {}
+
+/*************************** 
+スマホ縦向き 376px以上 END
+****************************/
+
+/*************************** 
+スマホ横向き 481px以上
+****************************/
+@media (min-width: 481px) {}
+
+/*************************** 
+スマホ横向き 481px以上 END
+****************************/
+/*************************** 
+タブレットの縦向き 601px以上 
+****************************/
+@media (min-width: 601px) {
+    .Profile {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .followBtn {
+        /* position: absolute;
+        right: 3rem; */
+    }
+
+    .profileRightBottom {
+        flex-direction: row;
+    }
+
+    .profileRight {
+        flex-grow: 1;
+    }
+
+    .followStateWrap {
+
+        margin-right: 1.5rem;
+        gap: 1rem;
+    }
+}
+
+/*************************** 
+タブレットの縦向き 601px以上 END
+****************************/
+/*************************** 
+iPad Proの縦向き 1024px以上 
+****************************/
+@media (min-width: 1024px) {
+    .editBtn {
+        font-size: 0.875rem;
+    }
+
+    .profileCoverEditBtn {
+        font-size: 0.75rem;
+
+    }
+}
+
+/*************************** 
+タブレットの縦向き 1024px以上 END
+****************************/
+
+/*************************** 
+スマホ縦向き  360px 以下
+****************************/
+@media (max-width: 360px) {}
+
+/*************************** 
+スマホ縦向き 376px以下 END
+****************************/
