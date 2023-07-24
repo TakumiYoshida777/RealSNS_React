@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../State/AuthContext';
+import React, { useEffect, useState } from 'react';
 import "./Follows.css";
 import axios from 'axios';
 const Follows = ({ profileUser }) => {

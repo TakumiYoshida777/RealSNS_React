@@ -64,9 +64,7 @@ const Message = ({ messageAreaState, setMessageAreaState, profileUser }) => {
                         className="cancelBtn btn">キャンセル</button>
                     <button className="sendBtn btn" type="submit">送信</button>
                 </div>
-
             </form>
-
         </div >
 
     );

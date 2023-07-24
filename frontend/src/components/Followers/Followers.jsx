@@ -2,7 +2,8 @@
  * 親コンポーネント
  *      Rightbar
  * props
- *     profileUser:プロフィールのユーザーデータ
+ *      profileUser:プロフィールのユーザーデータ
+ *      userFollowers:
  */
 
 import React, { useEffect, useState } from 'react';
@@ -30,7 +31,6 @@ const Followers = ({ profileUser, userFollowers }) => {
             }
         };
         getFollowersUserData();
-
     }, [followers]);
 
     const screenTransitionProfile = (path) => {
@@ -43,8 +43,6 @@ const Followers = ({ profileUser, userFollowers }) => {
                     return (
                         <div key={user._id} className="follower">
                             <div className="followUser" onClick={() => screenTransitionProfile(user.username)}>
-                                {/* <img src={PUBLIC_FOLDER + user.profilePicture !== "" && PUBLIC_FOLDER + user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
-                                    } alt="" className="followerImg" /> */}
                                 <img src={
                                     user.profilePicture === "" || !user.profilePicture
                                         ? PUBLIC_FOLDER + "/person/noAvatar.png"

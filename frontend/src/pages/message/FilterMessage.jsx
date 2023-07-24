@@ -80,8 +80,12 @@ const FilterMessage = ({ targetMessageData, targetMessageUserName, setOpenFilter
                                     </div>
                                 </div>
                                 <div className="messageWrap">
-                                    <h3 className="title">Title:{data.title}</h3>
-                                    <hr />
+                                    {data.title && <>
+                                        <h3 className="title">Title:{data.title}</h3>
+                                        <hr />
+                                    </>
+                                    }
+
                                     <div className="message">{data.message}</div>
                                     <div className="dateTime">
                                         <span className="date">{data.date}</span>
