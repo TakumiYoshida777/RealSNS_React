@@ -82,7 +82,7 @@ const Profile = () => {
         //配列に自分のuserIdを追加
         setUserFollowers([...userFollowers, currentUser._id]);
 
-
+        setFollowState(true);
         /**
          * ローカルストレージのユーザー情報を更新
          */
@@ -94,7 +94,6 @@ const Profile = () => {
         localStorageUserData.followings = [...localStorageUserData.followings, followUserId];
         const updatedUser = JSON.stringify(localStorageUserData);
         await localStorage.setItem('user', updatedUser);
-        setFollowState(true);
     };
     //フォロー解除ボタンの押下処理
     const handleUnFollow = async (e) => {

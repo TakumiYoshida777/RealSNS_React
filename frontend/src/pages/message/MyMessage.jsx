@@ -20,10 +20,7 @@ const MyMessage = () => {
     //新着メッセージ受信時に切り替わる
     const [sendCatch, setSendCatch] = useState(false);
 
-    const [readMark, setReadMark] = useState(true);
-
     const mobileMediaQuery = useMediaQuery({ minWidth: "415px" });
-    console.log(mobileMediaQuery);
     useEffect(() => {
 
         // メッセージデータを取得

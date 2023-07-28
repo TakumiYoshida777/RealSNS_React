@@ -108,3 +108,8 @@
 .postText {
     word-wrap: break-word;
 }
+
+.moreVert,
+.bookmarkBtn {
+    cursor: pointer;
+}

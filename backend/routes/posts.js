@@ -227,4 +227,93 @@ router.get("/profile/:username/:postid/comments", async (req, res) => {
         return res.status(500).json("コメントの取得に失敗しました。");
     }
 });
+
+//お気に入りの投稿を登録
+//postIdを引数
+router.put("/:postid/bookmark", async (req, res) => {
+    try {
+        const userId = req.body.userId;
+        const postId = req.params.postid;
+        const targetPost = await Post.findOne({ _id: postId });
+
+        if (!targetPost) {
+            return res.status(404).json("投稿が見つかりません");
+        }
+
+        if (targetPost.bookmarks.includes(userId)) {
+            return res.status(400).json("すでにお気に入りに登録されています");
+        }
+
+        targetPost.bookmarks.push(userId);
+        await targetPost.save();
+        return res.status(200).json("投稿をお気に入りに登録しました");
+
+
+    } catch (err) {
+        return res.status(500).json("お気に入りの登録に失敗しました");
+    }
+});
+
+//お気に入りの投稿を解除
+router.put("/:postid/unbookmark", async (req, res) => {
+    try {
+        const userId = req.body.userId; // リクエストのボディからuserIdを取得する
+        const postId = req.params.postid;
+        const targetPost = await Post.findOne({ _id: postId });
+
+        if (!targetPost) {
+            return res.status(404).json("投稿が見つかりません");
+        }
+
+        await targetPost.updateOne({
+            $pull: {
+                bookmarks: userId
+            }
+        });
+        return res.status(200).json("投稿をお気に入りから解除しました");
+
+
+    } catch (err) {
+        return res.status(500).json("お気に入りの解除に失敗しました");
+    }
+});
+
+//自分のお気に入り登録済みの投稿のみ全て取得
+router.get("/timeline/bookmark/:userId/:postcount/:initialgetposts", async (req, res) => {
+    const initialGetPosts = (req.params.initialgetposts);
+    const endPointCount = (req.params.postcount);
+    // const startPostCount = 0; // 0スタート
+    const startPostCount = endPointCount - initialGetPosts; //initialGetPostsの件数分取得するため
+    try {
+        //自分の投稿内容を取得
+        const currentUser = await User.findById(req.params.userId);
+        const userposts = await Post.find({ userId: currentUser._id })
+            .sort({ createdAt: -1 }); // 投稿を降順に並び替える
+
+        const followingIds = currentUser.followings; // フォローしている友達のID配列を取得
+
+        // フォローしている友達の投稿を取得
+        const friendPosts = await Post.find({ userId: { $in: followingIds } })
+            .sort({ createdAt: -1 });
+
+        //自分とフレンドの投稿を結合
+        const allPosts = [...userposts, ...friendPosts];
+
+        //TODO:お気に入りを取得
+        const bookmarkPosts = allPosts.filter(post => post.bookmarks.includes(req.params.userId));
+
+
+        //降順に並び替えて指定の投稿を20件取得する
+        const sortedData = bookmarkPosts
+            .sort((a, b) => b.createdAt - a.createdAt)
+            .slice(startPostCount, endPointCount);
+
+        return res.status(200).json(sortedData);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
+
+
 module.exports = router;

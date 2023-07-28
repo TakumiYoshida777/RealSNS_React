@@ -29,7 +29,6 @@ const Chatlist = ({ filterChat, sendCatch, openFilterMessage }) => {
         getMessage();
 
     }, [sendCatch, openFilterMessage]);
-    console.log(chatlist, "chatlist");
     return (
         <div className="chatListContainer">
             <h3 className="listItem">ChatList</h3>

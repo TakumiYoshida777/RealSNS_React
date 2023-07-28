@@ -10,7 +10,6 @@ const FilterMessage = ({ targetMessageData, targetMessageUserName, setOpenFilter
 
     const title = useRef();
     const message = useRef();
-    console.log(targetMessageData, "targetMessageData");
     const noRead = targetMessageData.filter(data => data.read === false);
     console.log(noRead, "noRead");
 

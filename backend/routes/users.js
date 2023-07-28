@@ -171,4 +171,27 @@ router.get("/randomusers", async (req, res) => {
         return res.status(500).json({ error: "ランダムなユーザーを取得できませんでした" });
     }
 });
+
+
+
+
+//お気に入りの投稿一覧を取得
+router.get('/:id/bookmarkpostlist', async (req, res) => {
+    // return res.status(200).json("OKOKおーけ")
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ error: '指定されたユーザーが見つかりません' });
+        }
+
+        const bookmarkPostsId = user.bookmarkPosts;
+        const bookmarkPostList = await Post.find({
+            _id: { $in: bookmarkPostsId }
+        });
+        return res.status(200).json(bookmarkPostList);
+    } catch (err) {
+        return res.status(500).json({ error: 'お気に入りの投稿一覧の取得に失敗しました' });
+    }
+});
 module.exports = router;

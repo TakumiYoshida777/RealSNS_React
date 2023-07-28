@@ -170,6 +170,7 @@
 .follow,
 .followers {
     border-bottom: 1px solid #657b9f;
+    cursor: pointer;
 }
 
 /*************************** 

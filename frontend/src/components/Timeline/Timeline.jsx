@@ -6,35 +6,53 @@ import axios from 'axios';
 import { AuthContext } from '../../State/AuthContext';
 import { removeDuplicatesById } from '../../common/array';
 
-const Timeline = ({ username }) => {
+const Timeline = ({ username, pathName }) => {
     //表示している全ての投稿を保持
     const [posts, setPosts] = useState([]);
 
     const { user } = useContext(AuthContext);
-    const [postCatch, setPostCatch] = useState(false);//メッセージが届いたらステートを変更する
+    const [postCatch, setPostCatch] = useState(false);//投稿が届いたらステートを変更する
 
     //取得する投稿数
     const initialGetPosts = 20;
     const [endPostCount, setEndPostCount] = useState(initialGetPosts);
 
+    //TODO:タイムラインでお気に入り登録しているポストを絞り込み出力する
+    //TODO:BookmarkcomponentからpathNameがpropsで渡ってくる
     useEffect(() => {
         const fhechPosts = async () => {
+            try {
+                let response;
+                if (username) {//プロフィールの場合
+                    response = await axios.get(`/posts/profile/${username}/${endPostCount}/${initialGetPosts}`);
+                } else if (pathName === "/bookmark") {//ブックマークの場合
+                    response = await axios.get(`/posts/timeline/bookmark/${user._id}/${endPostCount}/${initialGetPosts}`);
+                } else {//ホームの場合
+                    response = await axios.get(`/posts/timeline/${user._id}/${endPostCount}/${initialGetPosts}`);
+                }
 
-            const response = username
-                ? await axios.get(`/posts/profile/${username}/${endPostCount}/${initialGetPosts}`)//プロフィールの場合
-                : await axios.get(`/posts/timeline/${user._id}/${endPostCount}/${initialGetPosts}`);//ホームの場合
-            const getPosts = response.data.sort((post1, post2) => {
-                return new Date(post2.createdAt) - new Date(post1.createdAt);
-            });
-            if (endPostCount <= initialGetPosts) {
-                //初回読み込みだったら
-                setPosts(getPosts);
-            } else {
-                //２回目以降の読み込みだったら新しく取得したpostデータを追加して新しい配列として渡す
-                const newPosts = [...posts, ...getPosts];
+                console.log(response, "res");
 
-                //重複したIDは削除
-                setPosts(removeDuplicatesById(newPosts));
+                const getPosts = response.data.sort((post1, post2) => {
+                    return new Date(post2.createdAt) - new Date(post1.createdAt);
+                });
+
+                if (endPostCount <= initialGetPosts) {
+                    // 初回読み込みだったら
+                    setPosts(getPosts);
+                } else {
+                    // ２回目以降の読み込みだったら新しく取得したpostデータを追加して新しい配列として渡す
+                    const newPosts = [...posts, ...getPosts];
+
+                    // 重複したIDは削除
+                    setPosts(removeDuplicatesById(newPosts));
+                }
+
+                // これで状態が更新され、ここで残りのコードを続ける。
+                // データの取得と状態の更新が終わった後に実行されまる。
+            } catch (error) {
+                console.error("データの取得中にエラーが発生しました:", error);
+                // エラーのハンドリングを行います（必要に応じて）。
             }
         };
         fhechPosts();

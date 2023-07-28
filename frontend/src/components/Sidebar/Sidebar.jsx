@@ -70,10 +70,12 @@ const Sidebar = ({ onClickMenu }) => {
                         </Link>
 
                     </li>
-                    {/* <li className="sidebarListItem">
-                        <Bookmark className="sidebarIcon" />
-                        <span className="sidebarListItemText">ブックマーク</span>
-                    </li> */}
+                    <li>
+                        <Link to={`/bookmark`} style={{ textDecoration: "none", color: "black" }} className="sidebarListItem">
+                            <Bookmark className="sidebarIcon" />
+                            <span className="sidebarListItemText">ブックマーク</span>
+                        </Link>
+                    </li>
                     <li>
                         <Link to={`/profile/${user.username}`} style={{ textDecoration: "none", color: "black" }} className="sidebarListItem">
                             <Person className="sidebarIcon" />

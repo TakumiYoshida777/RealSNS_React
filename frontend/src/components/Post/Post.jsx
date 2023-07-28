@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../State/AuthContext';
 import PostMoreMenu from '../PostMoreMenu/PostMoreMenu';
 import ModalComment from '../ModalComment/ModalComment';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 
 const Post = ({ post, setPostCatch }) => {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -28,6 +30,7 @@ const Post = ({ post, setPostCatch }) => {
     const [moreMenu, setMoreMenu] = useState(false);
     const [edit, setEdit] = useState(false);
     const [openComment, setOpenComment] = useState(false);
+    const [bookmark, setBookmark] = useState(false);
 
     const editText = useRef();
     useEffect(() => {
@@ -39,6 +42,12 @@ const Post = ({ post, setPostCatch }) => {
         fhechUser();
     }, [post.userId]);
 
+    //お気に入り登録済みの投稿はブックマーク済みのアイコンを表示
+    useEffect(() => {
+        if (post.bookmarks.includes(currentUser._id)) {
+            setBookmark(true);
+        }
+    }, []);
 
     const handleLike = async () => {
         setLike(isLiked ? like - 1 : like + 1);
@@ -117,6 +126,26 @@ const Post = ({ post, setPostCatch }) => {
             return;
         }
     };
+
+    //投稿のお気に入り登録
+    const onBookmarkBtn = async () => {
+        try {
+            await axios.put(`/posts/${post._id}/bookmark`, { userId: currentUser._id });
+            setBookmark(true);
+        } catch (err) {
+            console.log(err, "お気に入り登録のリクエストに失敗しました");
+        }
+    };
+
+    // お気に入りを解除
+    const onUnBookmarkBtn = async () => {
+        try {
+            await axios.put(`/posts/${post._id}/unbookmark`, { userId: currentUser._id });
+            setBookmark(false);
+        } catch (err) {
+            console.log(err, "お気に入り解除のリクエストに失敗しました");
+        }
+    };
     return (
         <div className="post" onClick={() => closeMenu()}>
             {openComment && <ModalComment
@@ -138,13 +167,22 @@ const Post = ({ post, setPostCatch }) => {
                         <span className="postUsername">{user.username}</span>
                         <span className="postDate">{format(post.createdAt)}</span>
                     </div>
-                    <div className="postTopRigtht" onClick={() => moreVert()}>
+                    <div className="postTopRigtht">
                         <form>
                             {moreMenu && currentUser._id === user._id && < PostMoreMenu
                                 setEdit={setEdit}
                                 handleDeleteSubmit={handleDeleteSubmit}
                             />}
-                            {currentUser._id === user._id && <MoreVert />}
+                            <div className="bookmarkBtn">
+                                {bookmark
+                                    ? <BookmarkAddedIcon onClick={() => onUnBookmarkBtn()} />
+                                    : <BookmarkBorderIcon onClick={() => onBookmarkBtn()} />}
+                            </div>
+                            {currentUser._id === user._id &&
+                                <div className="moreVert" onClick={() => moreVert()}>
+                                    <MoreVert />
+                                </div>
+                            }
                         </form>
                     </div>
                 </div>
