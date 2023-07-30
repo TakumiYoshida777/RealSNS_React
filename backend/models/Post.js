@@ -16,11 +16,11 @@ const PostSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
-
     bookmarks: {
         type: Array,
         default: [],
     },
+
 
     comment: {
         type: Array,
