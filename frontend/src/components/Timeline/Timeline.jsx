@@ -31,8 +31,6 @@ const Timeline = ({ username, pathName }) => {
                     response = await axios.get(`/posts/timeline/${user._id}/${endPostCount}/${initialGetPosts}`);
                 }
 
-                console.log(response, "res");
-
                 const getPosts = response.data.sort((post1, post2) => {
                     return new Date(post2.createdAt) - new Date(post1.createdAt);
                 });
@@ -57,7 +55,7 @@ const Timeline = ({ username, pathName }) => {
         };
         fhechPosts();
 
-    }, [username, user._id, postCatch, endPostCount]);
+    }, [username, user._id, postCatch, endPostCount, pathName]);
 
 
     //新着投稿が届いた場合
