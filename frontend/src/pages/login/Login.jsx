@@ -11,12 +11,10 @@ const Login = () => {
 
     /**
      * ログイン画面の入力情報を取得
-     * @param {クリックイベント} e 
+     * @param {*} e 
      */
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(email.current.value);
-        // console.log(password.current.value);
         loginCall({
             email: email.current.value,
             password: password.current.value,
@@ -30,7 +28,7 @@ const Login = () => {
             <div className="loginWrapper">
                 <div className="loginLeft">
                     <h3 className="loginLogo">Real SNS</h3>
-                    <span className="loginDec">本格的なSNSを、自分の手で。</span>
+                    <span className="loginDec"></span>
                 </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>

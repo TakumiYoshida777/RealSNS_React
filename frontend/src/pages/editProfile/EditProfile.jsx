@@ -30,19 +30,23 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             profileData.append("name", filename);
             profileData.append("file", file);
             updatedUser.img = filename;
+            // console.log("name", filename);
+            // console.log("file", file);
+            // console.log(updatedUser.img = filename);
             try {
                 //画像APIを叩く
                 await axios.post("/upload", profileData);
             } catch (err) {
-                console.log(err);
+                console.log("画像のuploadに失敗しました", err);
             }
         }
 
         const res = await axios.get(`/users?username=${username}`);
 
         if (user._id === res.data._id) {
-            console.log("プロフィールとログイン者が同一人物");
             try {
+                console.log("プロフィールとログイン者が同一人物");
+
                 const updateResponse = await axios.put(`/users/${user._id}`, updatedUser);
                 setNewText(updateResponse.data.desc);
                 console.log(updateResponse.data.profilePicture, "profile picture");

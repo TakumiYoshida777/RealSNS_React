@@ -5,7 +5,6 @@ import Timeline from '../../components/Timeline/Timeline';
 import Rightbar from '../../components/Rightbar/Rightbar';
 import Hamburger from "../../components/Hamburger/Hamburger";
 import { useMediaQuery } from 'react-responsive';
-import BookmarPostkList from '../../components/BookmarPostkList/BookmarPostkList';
 import { useLocation } from 'react-router-dom';
 
 const Bookmark = () => {
