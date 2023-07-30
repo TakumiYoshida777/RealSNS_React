@@ -48,7 +48,6 @@ const Share = ({ setPostCatch }) => {
         setPostCatch((postCatch) => !postCatch);
         setFile(null);
     };
-
     return (
         <div className="share">
             <div className="shareWrapper">

@@ -117,7 +117,6 @@ const Post = ({ post, setPostCatch }) => {
                 //削除のAPIを叩く
                 // await axios.delete(`/posts/${post._id}`, deletePost);
                 await axios.delete(`/posts/${post._id}/delete`, { data: { userId: user._id } });
-                // window.location.reload();
                 setPostCatch(postCatch => !postCatch);
             } catch (err) {
                 console.log(err);
