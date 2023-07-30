@@ -61,7 +61,7 @@ const FilterMessage = ({ targetMessageData, targetMessageUserName, setOpenFilter
                 && <form onSubmit={(e) => sendMessage(e)} className="sendMessage">
                     <input className="sendInput" type="text" name="" id="" placeholder="タイトル" ref={title} />
                     <div className="wrapper">
-                        <textarea className="textarea" ref={message} placeholder="メッセージ"></textarea>
+                        <textarea className="textarea" ref={message} required placeholder="メッセージ"></textarea>
                         <button className="modalSubmitBtn" type="submit">送信</button>
                     </div>
                 </form>}

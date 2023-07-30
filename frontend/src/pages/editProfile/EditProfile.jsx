@@ -24,7 +24,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             city: editCity.current.value,
             age: editAge.current.value,
         };
-
         console.log("onSubmitStart!!");
         if (file) {
             profileData.append("name", filename);
@@ -35,7 +34,8 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             // console.log(updatedUser.img = filename);
             try {
                 //画像APIを叩く
-                await axios.post("/upload", profileData);
+                const res = await axios.post("/upload", profileData);
+                console.log(res, "画像データ");
             } catch (err) {
                 console.log("画像のuploadに失敗しました", err);
             }
@@ -63,8 +63,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
         }
 
         handleEditBtn();
-
-
     };
     return (
         <div className="modal" >

@@ -2,6 +2,8 @@ import React, { useContext, useRef } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 import axios from 'axios';
+import { AuthContext } from '../../State/AuthContext';
+import { loginCall } from '../../actionCallsDispatch';
 
 const Register = () => {
     const email = useRef();
@@ -10,7 +12,7 @@ const Register = () => {
     const passwordConfirmaition = useRef();
 
     const navigate = useNavigate();
-
+    const { dispatch } = useContext(AuthContext);
     /**
      * DBにユーザー情報を新規登録
      * @param {*} e 
@@ -32,6 +34,12 @@ const Register = () => {
                 };
                 //registerApiを叩く（登録処理）
                 await axios.post("/auth/register", user);
+                loginCall({
+                    email: email.current.value,
+                    password: password.current.value,
+                },
+                    dispatch
+                );
                 navigate("/login");//ログイン画面にredirect
             } catch (err) {
                 return console.log(err);

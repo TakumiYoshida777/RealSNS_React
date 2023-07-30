@@ -51,21 +51,6 @@ const Chatlist = ({ filterChat, sendCatch, openFilterMessage }) => {
                         );
                     })}
                 </ul>}
-
-            {/* <h3 className="listItem">送信リスト</h3>
-            {mySendList.map((chat) => {
-                return (
-                    <ul className="sendList">
-                        <li key={chat._id}
-                            onClick={() => filterChat(chat)}
-                            className="sendUser" >
-                            {user.username !== chat.recipientName
-
-                                && <>{chat.recipientName}</>}
-                        </li>
-                    </ul>
-                );
-            })} */}
         </div >
     );
 };
