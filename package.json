@@ -19,7 +19,9 @@
   "scripts": {
     "start": "npm-run-all --parallel server frontend",
     "server": "node backend/server.js",
-    "frontend": "cd frontend && npm start"
+    "frontend": "cd frontend && npm start",
+    "start:dev": "nodemon --exec node_modules/.bin/ts-node server/index.ts",
+    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
