@@ -7,37 +7,11 @@ const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
 const searchRoute = require("./routes/search");
 const messagesRoute = require("./routes/messages");
-// const PORT = 5000;
+const PORT = 5000;
 const mongoose = require("mongoose");
-const cors = require("cors");
 const path = require("path");
 
 require("dotenv").config();
-
-
-app.use(express.static(path.resolve(__dirname, "../frontend/build")));
-
-app.get("*", (request, response) => {
-    response.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
-});
-// CORS対応
-app.use(
-    cors({
-        origin: "*",
-        exposedHeaders: [
-            "Content-Length",
-            "Authorization",
-            "Access-Control-Allow-Origin",
-            "Access-Control-Allow-Headers",
-        ],
-    })
-);
-// Express FWによるサーバーの立ち上げ
-const PORT = process.env.PORT || 5000;
-
-const server = app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
 
 function closeChangeStream(timeInMs = 60000, changeStream) {
     return new Promise((resolve) => {
@@ -64,17 +38,16 @@ mongoose
     });
 
 // ミドルウェア
-app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use(express.json());
 // ルートディレクトリを作成する　他から呼ぶときは"/"でアクセスできる
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/upload", uploadRoute);
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.use("/api/search", searchRoute);
 app.use("/api/messages", messagesRoute);
 app.use(express.static(path.join(__dirname, '../frontend/build')));
-
 /**
  * @param req
  *        ユーザー側から受け取ったリクエスト
@@ -85,7 +58,7 @@ app.get("/", (req, res) => {
     res.send("hello,express");
 });
 
-// const server = app.listen(PORT, () => console.log("サーバーが起動しました"));
+const server = app.listen(PORT, () => console.log("サーバーが起動しました"));
 
 /**
  * /api以外のアクセスは全てReactに渡す
