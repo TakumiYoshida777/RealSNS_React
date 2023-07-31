@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import { AuthContext } from "./State/AuthContext";
 import EditProfile from "./pages/editProfile/EditProfile";
 import MyMessage from "./pages/message/MyMessage";
+import Bookmark from "./pages/Bookmark/Bookmark";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Profile/:username" element={<Profile />} />
         <Route path="/Profile/:username/edit" element={<EditProfile />} />
         <Route path="/mymessage/:username/" element={<MyMessage />} />
+        <Route path="/bookmark" element={<Bookmark />} />
       </Routes>
     </Router>
   );
