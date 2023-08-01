@@ -7,7 +7,8 @@ const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
 const searchRoute = require("./routes/search");
 const messagesRoute = require("./routes/messages");
-const PORT = 5000;
+// const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const mongoose = require("mongoose");
 const path = require("path");
 
