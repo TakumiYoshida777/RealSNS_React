@@ -51,7 +51,7 @@ const Register = () => {
             <div className="loginWrapper">
                 <div className="loginLeft">
                     <h3 className="loginLogo">Real SNS</h3>
-                    <span className="loginDec">本格的なSNSを、自分の手で。</span>
+                    <span className="loginDec"></span>
                 </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
