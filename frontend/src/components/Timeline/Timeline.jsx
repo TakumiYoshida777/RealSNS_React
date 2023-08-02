@@ -64,7 +64,7 @@ const Timeline = ({ username, pathName }) => {
     //TODO:共通化したい
     useEffect(() => {
         // const socket = new WebSocket('ws://localhost:5000'); // WebSocketサーバーのURLに適宜変更する
-        const socket = new WebSocket('ws://real-sns-app-66036cba7bab.herokuapp.com'); // WebSocketサーバーのURLに適宜変更する
+        const socket = new WebSocket('wss://real-sns-app-66036cba7bab.herokuapp.com'); // WebSocketサーバーのURLに適宜変更する
 
         socket.onmessage = (event) => {
             const newPostData = JSON.parse(event.data);

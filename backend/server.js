@@ -1,5 +1,5 @@
 const express = require("express");
-const WebSocket = require('ws');
+const WebSocket = require('wss');
 const app = express();
 const userRoute = require("./routes/users"); 5;
 const authRoute = require("./routes/auth");

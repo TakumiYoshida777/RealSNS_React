@@ -45,7 +45,7 @@ const MyMessage = () => {
     //新着メッセージが届いた場合
     useEffect(() => {
         // const socket = new WebSocket('ws://localhost:5000'); // WebSocketサーバーのURLに適宜変更する
-        const socket = new WebSocket('ws://real-sns-app-66036cba7bab.herokuapp.com'); // WebSocketサーバーのURLに適宜変更する
+        const socket = new WebSocket('wss://real-sns-app-66036cba7bab.herokuapp.com'); // WebSocketサーバーのURLに適宜変更する
 
         socket.onmessage = (event) => {
             const newMessageData = JSON.parse(event.data);
