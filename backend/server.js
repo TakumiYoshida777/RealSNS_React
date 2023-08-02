@@ -1,8 +1,8 @@
 const express = require("express");
 const WebSocket = require('ws');
 const app = express();
-const userRoute = require("./routes/users");
-const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users"); 5;
+const authRoute = require("./routes/api/auth");
 const postRoute = require("./routes/posts");
 const uploadRoute = require("./routes/upload");
 const searchRoute = require("./routes/search");
