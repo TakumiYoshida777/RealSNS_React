@@ -31,7 +31,7 @@ const Chatlist = ({ filterChat, sendCatch, openFilterMessage }) => {
     }, [sendCatch, openFilterMessage]);
     return (
         <div className="chatListContainer">
-            <h3 className="listItem">ChatList</h3>
+            <h2 className="listItem">ChatList</h2>
             {chatlist.length === 0
                 ? <div>メッセージはありません。</div>
                 : <ul className="chatList">
