@@ -7,6 +7,8 @@ import { AuthContext } from '../../State/AuthContext';
 import { removeDuplicatesById } from '../../common/array';
 
 const Timeline = ({ username, pathName }) => {
+
+    const PUBLIC_URL = process.env.REACT_APP_PUBLIC_URL;
     //表示している全ての投稿を保持
     const [posts, setPosts] = useState([]);
 
@@ -61,7 +63,8 @@ const Timeline = ({ username, pathName }) => {
     //新着投稿が届いた場合
     //TODO:共通化したい
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:5000'); // WebSocketサーバーのURLに適宜変更する
+        // const socket = new WebSocket('ws://localhost:5000'); // WebSocketサーバーのURLに適宜変更する
+        const socket = new WebSocket('ws://real-sns-app-66036cba7bab.herokuapp.com'); // WebSocketサーバーのURLに適宜変更する
 
         socket.onmessage = (event) => {
             const newPostData = JSON.parse(event.data);

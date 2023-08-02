@@ -39,7 +39,8 @@ const Topbar = ({ openFilterMessage }) => {
 
     //メッセージが届いたらアラートを出してトップバーの新着メッセージ数を更新する
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:5000'); // WebSocketサーバーのURLに適宜変更する
+        // const socket = new WebSocket('ws://localhost:5000'); // WebSocketサーバーのURLに適宜変更する
+        const socket = new WebSocket('ws://real-sns-app-66036cba7bab.herokuapp.com'); // WebSocketサーバーのURLに適宜変更する
 
         socket.onmessage = (event) => {
             const newMessageData = JSON.parse(event.data);
