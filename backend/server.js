@@ -41,13 +41,21 @@ mongoose
 // ミドルウェア
 app.use(express.json());
 // ルートディレクトリを作成する　他から呼ぶときは"/"でアクセスできる
-app.use("/api/users", userRoute);
-app.use("/api/auth", authRoute);
-app.use("/api/posts", postRoute);
-app.use("/api/upload", uploadRoute);
+// app.use("/api/users", userRoute);
+// app.use("/api/auth", authRoute);
+// app.use("/api/posts", postRoute);
+// app.use("/api/upload", uploadRoute);
+// app.use("/images", express.static(path.join(__dirname, "public/images")));
+// app.use("/api/search", searchRoute);
+// app.use("/api/messages", messagesRoute);
+// app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.use("/users", userRoute);
+app.use("/auth", authRoute);
+app.use("/posts", postRoute);
+app.use("/upload", uploadRoute);
 app.use("/images", express.static(path.join(__dirname, "public/images")));
-app.use("/api/search", searchRoute);
-app.use("/api/messages", messagesRoute);
+app.use("/search", searchRoute);
+app.use("/messages", messagesRoute);
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 /**
  * @param req
