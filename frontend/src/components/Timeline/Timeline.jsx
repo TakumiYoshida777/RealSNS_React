@@ -105,7 +105,7 @@ const Timeline = ({ username, pathName }) => {
             {/* ページネーション */}
             <div className="pagination">
                 <div></div>
-                <button className="next" onClick={() => onPagination()}>
+                <button className="nextBtn" onClick={() => onPagination()}>
                     {posts.length >= endPostCount ? <>{`次の${initialGetPosts}件`}</> : ''}
                 </button>
             </div>

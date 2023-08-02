@@ -18,6 +18,13 @@
     margin-top: 2rem;
 }
 
+.nextBtn {
+    font-weight: 600;
+    margin-bottom: 2rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+}
+
 
 /*******
 **スマホ縦**
