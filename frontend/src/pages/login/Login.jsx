@@ -47,7 +47,7 @@ const Login = () => {
                             minLength="5"
                             ref={password} />
                         <button className="loginButton">ログイン</button>
-                        <span className="loginForgot">パスワードを忘れた方へ</span>
+                        {/* <span className="loginForgot">パスワードを忘れた方へ</span> */}
                         <Link to="/register">
                             <button className="loginRegisterBtn">アカウント作成</button>
                         </Link>
