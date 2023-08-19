@@ -33,6 +33,7 @@ const Profile = () => {
     const [newText, setNewText] = useState(currentUser.desc);
     //選択中の画像パス
     const [file, setFile] = useState(user.coverPicture);
+
     //プロフィールモーダルのトグル
     const [profileModal, setProfileModal] = useState(false);
     const [targetFollow, setTargetFollow] = useState("");
@@ -206,7 +207,7 @@ const Profile = () => {
         setProfileModal(prevState => !prevState);
         setTargetFollow(targetBool);
     };
-
+    console.log(user.profilePicture, "プロフィール画像");
     return (
         <>
             <Topbar />
@@ -223,8 +224,14 @@ const Profile = () => {
                         {/* 表示画像 */}
                         <div className="profileCover">
                             <img src={user.coverPicture !== "" && PUBLIC_FOLDER + user.coverPicture || PUBLIC_FOLDER + "/post/3.jpeg"} alt="" className="profileCoverImg" />
-                            <img src={user.profilePicture !== "" && PUBLIC_FOLDER + user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
-                            } alt="" className="profileUserImg" />
+                            {/* <img src={user.profilePicture !== "" && PUBLIC_FOLDER + user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                            } alt="" className="profileUserImg" /> */}
+
+                            {/* <img src={`data:image/jpeg;base64,${user.profilePicture}`} alt="Profile" /> */}
+
+                            {/* エンコードした画像を取得し表示 */}
+                            <img src={user.profilePicture} alt="Profile" className="profileUserImg" />
+
 
                             {currentUser._id === user._id && (
                                 <>

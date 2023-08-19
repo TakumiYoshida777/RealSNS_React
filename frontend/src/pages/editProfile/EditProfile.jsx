@@ -13,37 +13,73 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
     const [file, setFile] = useState(user.profilePicture);
     const { updateUser } = useContext(AuthContext);
 
+    //選択中の画像をエンコードしたデータ
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setSelectedImage(e.target.result);
+                setFile(file); // ここでfileをセットする
+            };
+            reader.readAsDataURL(file);//エンコードする
+        }
+    };
+
     const updateProfile = async (e) => {
         e.preventDefault();
         const profileData = new FormData();
-        const filename = Date.now() + file.name;
+        // const filename = Date.now() + file.name;
+
         const updatedUser = {
             userId: user._id,
-            profilePicture: filename ? filename : profileUser.profilePicture,
+            // profilePicture: filename ? filename : profileUser.profilePicture,
+            profilePicture: selectedImage,
             desc: editDesc.current.value,
             city: editCity.current.value,
             age: editAge.current.value,
         };
+
         console.log("onSubmitStart!!");
         if (file) {
-            profileData.append("name", filename);
-            profileData.append("file", file);
-            updatedUser.img = filename;
+            // profileData.append("name", filename);
+            // profileData.append("file", file);
+            profileData.append("imageBase64", selectedImage);
+            profileData.append("userId", user._id);
+
+            // console.log(selectedImage, "selectedImageエンコード済みのはず");
+            updatedUser.img = selectedImage;
+            // updatedUser.img = filename;
             // console.log("name", filename);
             // console.log("file", file);
             // console.log(updatedUser.img = filename);
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setSelectedImage(e.target.result);
+            };
+            reader.readAsDataURL(file);
+            // try {
+            //     //画像APIを叩く
+            //     const res = await axios.post("/upload", profileData);
+            //     console.log(res, "画像データ");
+            // } catch (err) {
+            //     console.log("画像のuploadに失敗しました", err);
+            // }
+
             try {
-                //画像APIを叩く
-                const res = await axios.post("/upload", profileData);
-                console.log(res, "画像データ");
-            } catch (err) {
-                console.log("画像のuploadに失敗しました", err);
+                await axios.post('/upload', profileData);
+                console.log('Image uploaded successfully!!');
+            } catch (error) {
+                console.error('Error!!! uploading image:', error);
             }
         }
 
         const res = await axios.get(`/users?username=${username}`);
 
         if (user._id === res.data._id) {
+            //テキストの更新
             try {
                 console.log("プロフィールとログイン者が同一人物");
 
@@ -66,7 +102,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
     };
     return (
         <div className="modal" >
-            <form className="container" onSubmit={(e) => updateProfile(e)}>
+            <form className="container" onSubmit={(e) => updateProfile(e)} encType="multipart/form-data">
                 <div className="editProfilePicture">
                     <div className="editTitleWrapper">
                         <h3 className="editTitle">プロフィール写真</h3>
@@ -74,9 +110,14 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                             <span className="editButton">編集</span>
                             <input type="file"
                                 id="profilePictureFile"
-                                accept=".png, .jpg,.jpeg, .webp"
+                                accept="*"
                                 style={{ display: "none" }}
-                                onChange={(e) => setFile(e.target.files[0])} />
+                                onChange={handleImageChange} />
+                            {/* TODO:テスト */}
+                            <div className="selectImage">
+                                {selectedImage && <img src={selectedImage} alt="Selected" />}
+                            </div>
+                            {/* テストここまで */}
                         </label>
                     </div>
                     <img src="" alt="" />
@@ -115,6 +156,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                     <button type="submit">更新</button>
                 </div>
             </form>
+
         </div>
     );
 };
