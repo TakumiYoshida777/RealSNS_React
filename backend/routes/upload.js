@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const multer = require("multer");
+// const multer = require("multer");
 const User = require("../models/User");
 
 // const storage = multer.diskStorage({

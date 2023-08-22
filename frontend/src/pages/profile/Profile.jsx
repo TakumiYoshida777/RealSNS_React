@@ -207,7 +207,7 @@ const Profile = () => {
         setProfileModal(prevState => !prevState);
         setTargetFollow(targetBool);
     };
-    console.log(user.profilePicture, "プロフィール画像");
+    // console.log(user.profilePicture, "プロフィール画像");
     return (
         <>
             <Topbar />

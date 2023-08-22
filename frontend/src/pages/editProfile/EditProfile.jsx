@@ -28,11 +28,10 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             0, // 回転（0度）
             (uri) => {
                 // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
-                console.log("※URL1※", uri);
+                // console.log("※URL1※", uri);
                 if (uri) {
                     setSelectedImage(uri);
                     setFile(uri); // ここでfileをセットする
-                    console.log("※URL2※", uri);
                 }
             },
             'base64' // データURIの形式
@@ -86,8 +85,8 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             // }
 
             try {
-                await axios.post('/upload', profileData);
-                console.log('Image uploaded successfully!!');
+                const res = await axios.post('/upload', profileData);
+                console.log(res);
             } catch (error) {
                 console.error('Error!!! uploading image:', error);
             }
