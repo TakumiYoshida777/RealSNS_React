@@ -67,7 +67,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             profileData.append("imageBase64", selectedImage);
             profileData.append("userId", user._id);
 
-            console.log(selectedImage, "selectedImageエンコード済みのはず");
+            // console.log(selectedImage, "selectedImageエンコード済みのはず");
             updatedUser.img = selectedImage;
             // updatedUser.img = filename;
 
@@ -101,7 +101,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
                 const updateResponse = await axios.put(`/users/${user._id}`, updatedUser);
                 setNewText(updateResponse.data.desc);
-                console.log(updateResponse.data.profilePicture, "profile picture");
+                // console.log(updateResponse.data.profilePicture, "profile picture");
 
                 //ローカルストレージ保管されてるログイン情報を変更する
                 const newProfilePicture = updateResponse.data.profilePicture;
