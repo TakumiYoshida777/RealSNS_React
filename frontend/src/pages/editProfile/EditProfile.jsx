@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './EditProfile.css';
 import { AuthContext } from '../../State/AuthContext';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Resizer from "react-image-file-resizer";
 
 const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profileUser }) => {
     const { user } = useContext(AuthContext);
@@ -18,14 +19,32 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setSelectedImage(e.target.result);
-                setFile(file); // ここでfileをセットする
-            };
-            reader.readAsDataURL(file);//エンコードする
-        }
+        Resizer.imageFileResizer(
+            file, // アップロードされたファイル
+            1000, // リサイズ後の幅
+            1000, // リサイズ後の高さ
+            'JPEG', // フォーマット
+            30, // 圧縮後のファイルサイズ（キロバイト）
+            0, // 回転（0度）
+            (uri) => {
+                // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
+                console.log("※URL1※", uri);
+                if (uri) {
+                    setSelectedImage(uri);
+                    setFile(uri); // ここでfileをセットする
+                    console.log("※URL2※", uri);
+                }
+            },
+            'base64' // データURIの形式
+        );
+        // if (file) {
+        //     const reader = new FileReader();
+        //     reader.onload = (e) => {
+        //         setSelectedImage(e.target.result);
+        //         setFile(file); // ここでfileをセットする
+        //     };
+        //     reader.readAsDataURL(file);//エンコードする
+        // }
     };
 
     const updateProfile = async (e) => {
@@ -49,17 +68,15 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             profileData.append("imageBase64", selectedImage);
             profileData.append("userId", user._id);
 
-            // console.log(selectedImage, "selectedImageエンコード済みのはず");
+            console.log(selectedImage, "selectedImageエンコード済みのはず");
             updatedUser.img = selectedImage;
             // updatedUser.img = filename;
-            // console.log("name", filename);
-            // console.log("file", file);
-            // console.log(updatedUser.img = filename);
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setSelectedImage(e.target.result);
-            };
-            reader.readAsDataURL(file);
+
+            // const reader = new FileReader();
+            // reader.onload = (e) => {
+            //     setSelectedImage(e.target.result);
+            // };
+            // reader.readAsDataURL(file);
             // try {
             //     //画像APIを叩く
             //     const res = await axios.post("/upload", profileData);
