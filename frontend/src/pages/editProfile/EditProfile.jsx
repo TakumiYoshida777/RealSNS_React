@@ -19,31 +19,52 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-        Resizer.imageFileResizer(
-            file, // アップロードされたファイル
-            1000, // リサイズ後の幅
-            1000, // リサイズ後の高さ
-            'JPEG', // フォーマット
-            30, // 圧縮後のファイルサイズ（キロバイト）
-            0, // 回転（0度）
-            (uri) => {
-                // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
-                // console.log("※URL1※", uri);
-                if (uri) {
-                    setSelectedImage(uri);
-                    setFile(uri); // ここでfileをセットする
-                }
-            },
-            'base64' // データURIの形式
-        );
-        // if (file) {
-        //     const reader = new FileReader();
-        //     reader.onload = (e) => {
-        //         setSelectedImage(e.target.result);
-        //         setFile(file); // ここでfileをセットする
-        //     };
-        //     reader.readAsDataURL(file);//エンコードする
-        // }
+        const fileSizeInBytes = file.size;
+        console.log("元ファイルのバイト数:", fileSizeInBytes, "bytes");
+        if (fileSizeInBytes < 50000) {
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setSelectedImage(e.target.result);
+                    setFile(file); // ここでfileをセットする
+                };
+                reader.readAsDataURL(file);//エンコードする
+            }
+        } else {
+            Resizer.imageFileResizer(
+                file, // アップロードされたファイル
+                1000, // リサイズ後の幅
+                1000, // リサイズ後の高さ
+                'JPEG', // フォーマット
+                10, // 圧縮後のファイルサイズ（キロバイト）
+                0, // 回転（0度）
+                (uri) => {
+                    // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
+                    // console.log("※URL1※", uri);
+                    if (uri) {
+
+
+                        // Base64 エンコードされたデータのバイト数を求める
+                        const base64Data = uri.split(',')[1];
+                        const byteSize = Math.ceil(base64Data.length);
+                        const kilobyteSize = byteSize / 1024;
+                        console.log("------complete!! resized image------");
+                        console.log("リサイズ", uri);
+                        console.log("推定サイズ:", kilobyteSize, "KB");
+                        if (kilobyteSize < 50) {
+                            setSelectedImage(uri);
+                            setFile(uri); // ここでfileをセットする
+                        } else {
+                            alert("画像サイズが大きすぎます");
+                        }
+
+                    }
+                },
+                'base64' // データURIの形式
+            );
+        }
+
+
     };
 
     const updateProfile = async (e) => {
