@@ -61,8 +61,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 'base64' // データURIの形式
             );
         }
-
-
     };
 
     const updateProfile = async (e) => {
@@ -109,9 +107,16 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 // console.log(updateResponse.data.profilePicture, "profile picture");
 
                 //ローカルストレージ保管されてるログイン情報を変更する
-                const newProfilePicture = updateResponse.data.profilePicture;
-                const newDesc = updateResponse.data.desc;
-                updateUser(newProfilePicture, newDesc);
+                if (updateResponse.data.profilePicture === null || updateResponse.data.profilePicture === undefined) {
+                    const newProfilePicture = user.profilePicture;
+                    const newDesc = updateResponse.data.desc;
+                    updateUser(newProfilePicture, newDesc);
+                } else {
+                    const newProfilePicture = updateResponse.data.profilePicture;
+                    const newDesc = updateResponse.data.desc;
+                    updateUser(newProfilePicture, newDesc);
+                }
+
             } catch (err) {
                 console.log(err.message, "リクエストの送信に失敗しました");
             }
