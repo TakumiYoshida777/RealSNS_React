@@ -26,6 +26,7 @@ const Post = ({ post, setPostCatch }) => {
 
     const [isLiked, setIsLiked] = useState(false);
     // const [isLiked, setIsLiked] = useState(true);
+    //投稿の対象ユーザー
     const [user, setUser] = useState({});
     const [moreMenu, setMoreMenu] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -40,7 +41,7 @@ const Post = ({ post, setPostCatch }) => {
             setUser(response.data);
         };
         fhechUser();
-    }, [post.userId]);
+    }, [post.userId, currentUser]);
 
     //お気に入り登録済みの投稿はブックマーク済みのアイコンを表示
     useEffect(() => {
@@ -145,6 +146,7 @@ const Post = ({ post, setPostCatch }) => {
             console.log(err, "お気に入り解除のリクエストに失敗しました");
         }
     };
+    console.log(user);
     return (
         <div className="post" onClick={() => closeMenu()}>
             {openComment && <ModalComment
