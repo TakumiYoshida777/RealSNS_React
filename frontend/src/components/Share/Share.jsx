@@ -16,8 +16,6 @@ const Share = ({ setPostCatch }) => {
     //選択中の画像をエンコードしたデータ
     const [selectedImage, setSelectedImage] = useState(null);
 
-    //TODO:画像のサイズによってリサイズ後の大きさを変えて画質をできるだけ担保する
-
     /**
      * 選択された背景画像をリサイズする
      * @param {*} event 
