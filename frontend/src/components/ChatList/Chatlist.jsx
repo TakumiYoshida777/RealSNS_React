@@ -41,7 +41,7 @@ const Chatlist = ({ filterChat, sendCatch, openFilterMessage }) => {
                                 onClick={() => filterChat(chat)}
                                 className="chat" >
                                 <div className="chatImgWrap">
-                                    <img src={PUBLIC_FOLDER + chat.profilePicture} className="senderPicture" />
+                                    <img src={chat.profilePicture} className="senderPicture" />
                                     {!chat.read && user.username !== chat.userName && <div className="readMark"></div>}
                                 </div>
                                 {user.username === chat.userName

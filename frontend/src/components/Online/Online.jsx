@@ -6,7 +6,7 @@ const Online = ({ user }) => {
     return (
         <li className="rightbarFriend">
             <div className="rightbarProfileImgContainer" >
-                <img src={PUBLIC_FOLDER + user.profilePicture} alt="" className="rihgtbarProfileImg" />
+                <img src={user.profilePicture} alt="" className="rihgtbarProfileImg" />
                 <span className="rightbarOnline"></span>
             </div>
             <span className="rightbarUsername">

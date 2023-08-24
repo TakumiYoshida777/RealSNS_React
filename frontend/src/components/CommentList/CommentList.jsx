@@ -7,7 +7,7 @@ const CommentList = ({ commentData, reply }) => {
     return (
         <div className="commentCard">
             <Link to={`/profile/${commentData.commentUserName}`}>
-                <img src={PUBLIC_FOLDER + commentData.commentUserProfilePicture} className="senderPicture" />
+                <img src={commentData.commentUserProfilePicture} className="senderPicture" />
             </Link>
             <div className="commentWrap" onClick={() => reply(commentData)}>
                 <div className="commentUserName">@ {commentData.commentUserName}</div>

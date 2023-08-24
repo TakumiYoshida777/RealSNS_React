@@ -5,7 +5,7 @@ const CloseFriend = ({ user }) => {
 
     return (
         <li className="sidebarFriend">
-            <img src={PUBLIC_FOLDER + user.profilePicture} alt="" className="sidebarFriendImg" />
+            <img src={user.profilePicture} alt="" className="sidebarFriendImg" />
             <span className="sidebarFriendName">
                 {user.username}
             </span>

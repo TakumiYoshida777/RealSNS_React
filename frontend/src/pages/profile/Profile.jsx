@@ -279,7 +279,7 @@ const Profile = () => {
                         <div className="profileCover">
                             <img src={user.coverPicture} alt=""
                                 className="profileCoverImg" />
-                            {/* <img src={user.profilePicture !== "" && PUBLIC_FOLDER + user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                            {/* <img src={user.profilePicture !== "" && user.profilePicture || "/person/noAvatar.png"
                             } alt="" className="profileUserImg" /> */}
 
                             {/* <img src={`data:image/jpeg;base64,${user.profilePicture}`} alt="Profile" /> */}

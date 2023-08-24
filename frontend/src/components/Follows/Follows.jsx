@@ -38,14 +38,14 @@ const Follows = ({ profileUser }) => {
                     return (
                         <div key={user._id} className="follower">
                             <div className="followUser" onClick={() => screenTransitionProfile(user.username)}>
-                                {/* <img src={PUBLIC_FOLDER + user.profilePicture !== "" && PUBLIC_FOLDER + user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                                {/* <img src={user.profilePicture !== "" && user.profilePicture || "/person/noAvatar.png"
                                 } alt="" className="followerImg" /> */}
 
                                 <img
                                     src={
                                         user.profilePicture === "" || !user.profilePicture
-                                            ? PUBLIC_FOLDER + "/person/noAvatar.png"
-                                            : PUBLIC_FOLDER + user.profilePicture
+                                            ? "/person/noAvatar.png"
+                                            : user.profilePicture
                                     }
                                     alt=""
                                     className="followerImg"

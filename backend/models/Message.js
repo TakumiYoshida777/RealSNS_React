@@ -29,7 +29,7 @@ const MessageSchema = new mongoose.Schema({
     /** 送信者の写真 */
     profilePicture: {
         type: String,
-        default: "/person/noAvatar.png"
+        default: ""
     },
     //日付
     date: {

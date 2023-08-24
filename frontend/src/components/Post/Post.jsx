@@ -203,7 +203,7 @@ const Post = ({ post, setPostCatch }) => {
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <img src={PUBLIC_FOLDER + "/heart.png"} alt="" className="likeIcon" onClick={() => handleLike()} />
+                        <img src={"/heart.png"} alt="" className="likeIcon" onClick={() => handleLike()} />
                         <span className="postLikeCounter">
                             {like}人がいいねを押しました
                         </span>

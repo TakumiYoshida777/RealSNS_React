@@ -10,24 +10,24 @@ const Friends = () => {
             <h4 className="rightbarTitle">あなたの友達</h4>
             <div className="rightbarFollowings">
                 <div className="rightbarFollowing">
-                    <img src={PUBLIC_FOLDER + "/person/1.jpeg"} alt="" className="rightbarFollowingImg" />
+                    <img src={"/person/1.jpeg"} alt="" className="rightbarFollowingImg" />
                     <span className="rightbarFollowingName">takumi</span>
                 </div>
 
                 {/* <div className="rightbarFollowing">
-                            <img src={PUBLIC_FOLDER + "/person/2.jpeg"} alt="" className="rightbarFollowingImg" />
+                            <img src={"/person/2.jpeg"} alt="" className="rightbarFollowingImg" />
                             <span className="rightbarFollowingName">tanaka</span>
                         </div>
                         <div className="rightbarFollowing">
-                            <img src={PUBLIC_FOLDER + "/person/3.jpeg"} alt="" className="rightbarFollowingImg" />
+                            <img src={"/person/3.jpeg"} alt="" className="rightbarFollowingImg" />
                             <span className="rightbarFollowingName">yamaki</span>
                         </div>
                         <div className="rightbarFollowing">
-                            <img src={PUBLIC_FOLDER + "/person/4.jpeg"} alt="" className="rightbarFollowingImg" />
+                            <img src={"/person/4.jpeg"} alt="" className="rightbarFollowingImg" />
                             <span className="rightbarFollowingName">sato</span>
                         </div>
                         <div className="rightbarFollowing">
-                            <img src={PUBLIC_FOLDER + "/person/5.jpeg"} alt="" className="rightbarFollowingImg" />
+                            <img src={"/person/5.jpeg"} alt="" className="rightbarFollowingImg" />
                             <span className="rightbarFollowingName">kikukawa</span>
                         </div> */}
             </div>
