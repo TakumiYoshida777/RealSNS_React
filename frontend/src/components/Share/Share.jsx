@@ -68,7 +68,7 @@ const Share = ({ setPostCatch }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        debugger;
         const newPost = {
             userId: user._id,
             desc: desc.current.value,
@@ -81,21 +81,20 @@ const Share = ({ setPostCatch }) => {
             // data.append("file", file);
             data.append("imageBase64", selectedImage);
             newPost.img = selectedImage;
-            try {
-                if (newPost.desc === "") {
-                    alert("何も入力されていません。");
-                } else {
-                    await axios.post("/posts", newPost);
-                    desc.current.value = "";
 
-                }
-
-            } catch (err) {
-                console.log(err);
-            }
         }
+        try {
+            if (newPost.desc === "") {
+                alert("何も入力されていません。");
+            } else {
+                await axios.post("/posts", newPost);
+                desc.current.value = "";
 
+            }
 
+        } catch (err) {
+            console.log(err);
+        }
         setPostCatch((postCatch) => !postCatch);
         setFile(null);
         setSelectedImage(null);
