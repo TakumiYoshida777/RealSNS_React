@@ -41,4 +41,18 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.post('/cover', async (req, res) => {
+    try {
+        const { userId, imageBase64 } = req.body;
+
+        // Userモデルを使用してprofilepictureを更新
+        await User.findByIdAndUpdate(userId, { coverPicture: imageBase64 });
+
+        res.status(200).json({ message: 'Image uploaded successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 module.exports = router;

@@ -158,10 +158,7 @@ const Post = ({ post, setPostCatch }) => {
                     <div className="postTopLeft">
                         <Link to={`/profile/${user.username}`}>
                             <img src={
-                                user.profilePicture
-                                    ? PUBLIC_FOLDER + user.profilePicture
-                                    : PUBLIC_FOLDER + "/person/noAvatar.png"
-                            } alt="" className="postProfileImg" />
+                                user.profilePicture} alt="" className="postProfileImg" />
                         </Link>
                         <span className="postUsername">{user.username}</span>
                         <span className="postDate">{format(post.createdAt)}</span>
@@ -200,7 +197,7 @@ const Post = ({ post, setPostCatch }) => {
                         </form>
                     }
 
-                    <img src={PUBLIC_FOLDER + post.img} alt="" className="postImg" />
+                    <img src={post.img} alt="" className="postImg" />
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">

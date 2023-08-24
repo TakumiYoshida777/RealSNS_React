@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Hamburger from '../../components/Hamburger/Hamburger';
 import Topbar from '../../components/Topbar/Topbar';
 import Timeline from '../../components/Timeline/Timeline';
@@ -12,6 +12,7 @@ import Message from '../message/Message';
 import { useMediaQuery } from 'react-responsive';
 import ModalFollows from '../../components/ModalFollows/ModalFollows';
 import { filterDuplicatesById } from '../../common/array';
+import Resizer from "react-image-file-resizer";
 
 const Profile = () => {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -33,6 +34,9 @@ const Profile = () => {
     const [newText, setNewText] = useState(currentUser.desc);
     //選択中の画像パス
     const [file, setFile] = useState(user.coverPicture);
+    //選択中の画像をエンコードしたデータ
+    const [selectedImage, setSelectedImage] = useState(null);
+
 
     //プロフィールモーダルのトグル
     const [profileModal, setProfileModal] = useState(false);
@@ -156,6 +160,54 @@ const Profile = () => {
         }
     };
 
+    /**
+     * 選択された背景画像をリサイズする
+     * @param {*} event 
+     */
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        const fileSizeInBytes = file.size;
+        console.log("元ファイルのバイト数:", fileSizeInBytes, "bytes");
+        if (fileSizeInBytes < 50000) {
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    setSelectedImage(e.target.result);
+                    setFile(file); // ここでfileをセットする
+                };
+                reader.readAsDataURL(file);//エンコードする
+            }
+        } else {
+            Resizer.imageFileResizer(
+                file, // アップロードされたファイル
+                1000, // リサイズ後の幅
+                1000, // リサイズ後の高さ
+                'JPEG', // フォーマット
+                10, // 圧縮後のファイルサイズ（キロバイト）
+                0, // 回転（0度）
+                (uri) => {
+                    // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
+                    // console.log("※URL1※", uri);
+                    if (uri) {
+                        // Base64 エンコードされたデータのバイト数を求める
+                        const base64Data = uri.split(',')[1];
+                        const byteSize = Math.ceil(base64Data.length);
+                        const kilobyteSize = byteSize / 1024;
+                        console.log("------complete!! resized image------");
+                        console.log("リサイズ", uri);
+                        console.log("推定サイズ:", kilobyteSize, "KB");
+                        if (kilobyteSize < 50) {
+                            setSelectedImage(uri);
+                            setFile(uri); // ここでfileをセットする
+                        } else {
+                            alert("画像サイズが大きすぎます");
+                        }
+                    }
+                },
+                'base64' // データURIの形式
+            );
+        }
+    };
     //背景画像を更新する
     const updateCoverImg = async () => {
 
@@ -164,21 +216,22 @@ const Profile = () => {
             const filename = Date.now() + file.name;
             const updatedUser = {
                 userId: currentUser._id,
-                coverPicture: filename ? filename : user.coverPicture,
+                coverPicture: selectedImage,
             };
-            profileData.append("name", filename);
-            profileData.append("file", file);
+            profileData.append("imageBase64", selectedImage);
+            // profileData.append("name", filename);
+            // profileData.append("file", file);
             updatedUser.img = filename;
             try {
                 //画像APIを叩く
-                await axios.post("/upload", profileData);
+                await axios.post("/upload/cover", profileData);
             } catch (err) {
                 console.log(err);
             }
             const res = await axios.get(`/users?username=${username}`);
 
             if (user._id === res.data._id) {
-                console.log("プロフィールとログイン者が同一人物");
+                // console.log("プロフィールとログイン者が同一人物");
                 try {
                     const updateResponse = await axios.put(`/users/${user._id}`, updatedUser);
                     setNewText(updateResponse.data.desc);
@@ -223,7 +276,8 @@ const Profile = () => {
                     <div className="profileRightTop">
                         {/* 表示画像 */}
                         <div className="profileCover">
-                            <img src={user.coverPicture !== "" && PUBLIC_FOLDER + user.coverPicture || PUBLIC_FOLDER + "/post/3.jpeg"} alt="" className="profileCoverImg" />
+                            <img src={user.coverPicture} alt=""
+                                className="profileCoverImg" />
                             {/* <img src={user.profilePicture !== "" && PUBLIC_FOLDER + user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
                             } alt="" className="profileUserImg" /> */}
 
@@ -242,7 +296,7 @@ const Profile = () => {
                                             id="coverPictureFile"
                                             accept=".png, .jpg,.jpeg, .webp"
                                             style={{ display: "none" }}
-                                            onChange={(e) => setFile(e.target.files[0])} />
+                                            onChange={handleImageChange} />
                                     </label>
                                     {coverImgBtn && <span className="profileCoverRegisterBtn editBtn "
                                         style={{ backgroundColor: " rgb(207, 147, 147)" }}

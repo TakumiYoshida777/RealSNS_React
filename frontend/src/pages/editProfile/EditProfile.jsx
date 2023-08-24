@@ -42,8 +42,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                     // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
                     // console.log("※URL1※", uri);
                     if (uri) {
-
-
                         // Base64 エンコードされたデータのバイト数を求める
                         const base64Data = uri.split(',')[1];
                         const byteSize = Math.ceil(base64Data.length);
@@ -74,7 +72,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
         const updatedUser = {
             userId: user._id,
-            // profilePicture: filename ? filename : profileUser.profilePicture,
             profilePicture: selectedImage,
             desc: editDesc.current.value,
             city: editCity.current.value,
@@ -90,20 +87,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
             // console.log(selectedImage, "selectedImageエンコード済みのはず");
             updatedUser.img = selectedImage;
-            // updatedUser.img = filename;
 
-            // const reader = new FileReader();
-            // reader.onload = (e) => {
-            //     setSelectedImage(e.target.result);
-            // };
-            // reader.readAsDataURL(file);
-            // try {
-            //     //画像APIを叩く
-            //     const res = await axios.post("/upload", profileData);
-            //     console.log(res, "画像データ");
-            // } catch (err) {
-            //     console.log("画像のuploadに失敗しました", err);
-            // }
 
             try {
                 const res = await axios.post('/upload', profileData);

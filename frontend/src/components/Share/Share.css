@@ -67,6 +67,12 @@
     cursor: pointer;
 }
 
+.selectedPostImage img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+}
+
 .shareButton {
     background-color: rgb(80, 106, 141);
     color: white;
