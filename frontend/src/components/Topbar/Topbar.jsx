@@ -66,8 +66,7 @@ const Topbar = ({ openFilterMessage }) => {
      */
     const handleSearch = async (e) => {
         e.preventDefault();
-
-        console.log(searchText.current.value, "Search value");
+        // console.log(searchText.current.value, "Search value");
         if (searchText.current.value === "") {
             alert("検索したいユーザー名を入力してください");
         } else {

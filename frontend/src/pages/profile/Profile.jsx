@@ -165,21 +165,21 @@ const Profile = () => {
      * @param {*} event 
      */
     const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        const fileSizeInBytes = file.size;
+        const selectFile = event.target.files[0];
+        const fileSizeInBytes = selectFile.size;
         console.log("元ファイルのバイト数:", fileSizeInBytes, "bytes");
         if (fileSizeInBytes < 50000) {
-            if (file) {
+            if (selectFile) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     setSelectedImage(e.target.result);
-                    setFile(file); // ここでfileをセットする
+                    setFile(selectFile); // ここでfileをセットする
                 };
-                reader.readAsDataURL(file);//エンコードする
+                reader.readAsDataURL(selectFile);//エンコードする
             }
         } else {
             Resizer.imageFileResizer(
-                file, // アップロードされたファイル
+                selectFile, // アップロードされたファイル
                 1000, // リサイズ後の幅
                 1000, // リサイズ後の高さ
                 'JPEG', // フォーマット
@@ -194,7 +194,7 @@ const Profile = () => {
                         const byteSize = Math.ceil(base64Data.length);
                         const kilobyteSize = byteSize / 1024;
                         console.log("------complete!! resized image------");
-                        console.log("リサイズ", uri);
+                        // console.log("リサイズ", uri);
                         console.log("推定サイズ:", kilobyteSize, "KB");
                         if (kilobyteSize < 50) {
                             setSelectedImage(uri);

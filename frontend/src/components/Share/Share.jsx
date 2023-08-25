@@ -21,47 +21,56 @@ const Share = ({ setPostCatch }) => {
      * @param {*} event 
      */
     const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        // const fileSizeInBytes = file.size;
-        setSelectedImageSize(file.size);
-        if (selectedImageSize < 50000) {
-            if (file) {
+        const selectFile = event.target.files[0];
+
+        if (selectFile) {
+            // console.log(selectFile);
+            const fileName = selectFile.name;
+            const fileExtension = fileName.match(/\.([^.]+)$/)[1].toUpperCase();//拡張子を取得
+            // console.log("拡張子:", fileExtension);
+
+            //元の画像サイズを取得
+            setSelectedImageSize(selectFile.size);
+
+            if (selectedImageSize < 50000) {
+                //取得した画像ファイルが50キロバイト以下
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     setSelectedImage(e.target.result);
-                    setFile(file); // ここでfileをセットする
+                    setFile(selectFile); // ここでfileをセットする
                 };
-                reader.readAsDataURL(file);//エンコードする
-            }
-        } else {
-            Resizer.imageFileResizer(
-                file, // アップロードされたファイル
-                1000, // リサイズ後の幅
-                1000, // リサイズ後の高さ
-                'JPEG', // フォーマット
-                30, // 圧縮後のファイルサイズ（キロバイト）
-                0, // 回転（0度）
-                (uri) => {
-                    // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
-                    // console.log("※URL1※", uri);
-                    if (uri) {
-                        // Base64 エンコードされたデータのバイト数を求める
-                        const base64Data = uri.split(',')[1];
-                        const byteSize = Math.ceil(base64Data.length);
-                        const kilobyteSize = byteSize / 1024;
-                        console.log("------complete!! resized image------");
-                        console.log("リサイズ", uri);
-                        console.log("推定サイズ:", kilobyteSize, "KB");
-                        if (kilobyteSize < 50) {
-                            setSelectedImage(uri);
-                            setFile(uri); // ここでfileをセットする
-                        } else {
-                            alert("画像サイズが大きすぎます");
+                reader.readAsDataURL(selectFile);//エンコードする
+            } else {
+                // 取得した画像データが51キロバイト以上
+                Resizer.imageFileResizer(
+                    selectFile, // アップロードされたファイル
+                    1000, // リサイズ後の幅
+                    1000, // リサイズ後の高さ
+                    `${fileExtension}`, // フォーマット
+                    30, // 圧縮後のファイルサイズ（キロバイト）
+                    0, // 回転（0度）
+                    (uri) => {
+                        // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
+                        // console.log("※URL1※", uri);
+                        if (uri) {
+                            // Base64 エンコードされたデータのバイト数を求める
+                            const base64Data = uri.split(',')[1];
+                            const byteSize = Math.ceil(base64Data.length);
+                            const kilobyteSize = byteSize / 1024;
+                            console.log("------complete!! resized image------");
+                            // console.log("リサイズ", uri);
+                            console.log("推定サイズ:", kilobyteSize, "KB");
+                            if (kilobyteSize < 50) {
+                                setSelectedImage(uri);
+                                setFile(uri); // ここでfileをセットする
+                            } else {
+                                alert("画像サイズが大きすぎます");
+                            }
                         }
-                    }
-                },
-                'base64' // データURIの形式
-            );
+                    },
+                    'base64' // データURIの形式
+                );
+            }
         }
     };
     // console.log("元ファイルのバイト数:", selectedImageSize, "bytes");
@@ -93,6 +102,8 @@ const Share = ({ setPostCatch }) => {
 
         } catch (err) {
             console.log(err);
+            alert("予期せぬエラー：対象の画像データがアップロードできません。別の画像をアップロードしてください");
+            window.location.reload();
         }
         setPostCatch((postCatch) => !postCatch);
         setFile(null);
@@ -119,7 +130,7 @@ const Share = ({ setPostCatch }) => {
                             <span className="shareOptionText">写真</span>
                             <input type="file"
                                 id="file"
-                                accept=".png, .jpg, .webp"
+                                accept=".png, .jpg, .webp .webp"
                                 style={{ display: "none" }}
                                 onChange={handleImageChange} />
                         </label>
