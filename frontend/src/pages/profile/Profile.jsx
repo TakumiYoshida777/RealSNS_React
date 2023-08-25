@@ -285,7 +285,7 @@ const Profile = () => {
                             {/* <img src={`data:image/jpeg;base64,${user.profilePicture}`} alt="Profile" /> */}
 
                             {/* エンコードした画像を取得し表示 */}
-                            <img src={currentUser.profilePicture} alt="Profile" className="profileUserImg" />
+                            <img src={user.profilePicture} alt="Profile" className="profileUserImg" />
 
 
                             {currentUser._id === user._id && (
