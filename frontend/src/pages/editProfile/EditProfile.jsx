@@ -92,6 +92,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 console.log(res);
             } catch (error) {
                 console.error('Error!!! uploading image:', error);
+                alert("予期せぬエラー：対象の画像データがアップロードできません。別の画像をアップロードしてください。\n※画像サイズを小さくするとアップロードができることがあります。");
             }
         }
 

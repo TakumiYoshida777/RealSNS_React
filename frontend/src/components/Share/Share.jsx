@@ -102,7 +102,7 @@ const Share = ({ setPostCatch }) => {
 
         } catch (err) {
             console.log(err);
-            alert("予期せぬエラー：対象の画像データがアップロードできません。別の画像をアップロードしてください");
+            alert("予期せぬエラー：対象の画像データがアップロードできません。別の画像をアップロードしてください。\n※画像サイズを小さくするとアップロードができることがあります。");
             window.location.reload();
         }
         setPostCatch((postCatch) => !postCatch);
