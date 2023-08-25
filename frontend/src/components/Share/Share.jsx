@@ -64,11 +64,10 @@ const Share = ({ setPostCatch }) => {
             );
         }
     };
-    console.log("元ファイルのバイト数:", selectedImageSize, "bytes");
+    // console.log("元ファイルのバイト数:", selectedImageSize, "bytes");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        debugger;
         const newPost = {
             userId: user._id,
             desc: desc.current.value,
