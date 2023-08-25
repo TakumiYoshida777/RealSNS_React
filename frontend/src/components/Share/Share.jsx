@@ -104,7 +104,9 @@ const Share = ({ setPostCatch }) => {
             <div className="shareWrapper">
                 <div className="shareTop">
                     <img src={
-                        user.profilePicture} alt="" className="shareProfileImg" />
+                        user.profilePicture
+                            ? user.profilePicture
+                            : PUBLIC_FOLDER + "person/noAvatar.png"} alt="" className="shareProfileImg" />
                     <input type="text"
                         className="shareInput"
                         placeholder="今何してるの？"

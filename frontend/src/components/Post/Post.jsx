@@ -160,7 +160,9 @@ const Post = ({ post, setPostCatch }) => {
                     <div className="postTopLeft">
                         <Link to={`/profile/${user.username}`}>
                             <img src={
-                                user.profilePicture} alt="" className="postProfileImg" />
+                                user.profilePicture
+                                    ? user.profilePicture
+                                    : PUBLIC_FOLDER + "person/noAvatar.png"} alt="" className="postProfileImg" />
                         </Link>
                         <span className="postUsername">{user.username}</span>
                         <span className="postDate">{format(post.createdAt)}</span>
@@ -203,7 +205,7 @@ const Post = ({ post, setPostCatch }) => {
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
-                        <img src={"/heart.png"} alt="" className="likeIcon" onClick={() => handleLike()} />
+                        <img src={PUBLIC_FOLDER + "/heart.png"} alt="" className="likeIcon" onClick={() => handleLike()} />
                         <span className="postLikeCounter">
                             {like}人がいいねを押しました
                         </span>

@@ -277,7 +277,9 @@ const Profile = () => {
                     <div className="profileRightTop">
                         {/* 表示画像 */}
                         <div className="profileCover">
-                            <img src={user.coverPicture} alt=""
+                            <img src={user.coverPicture
+                                ? user.coverPicture
+                                : PUBLIC_FOLDER + "post/3.jpeg"} alt=""
                                 className="profileCoverImg" />
                             {/* <img src={user.profilePicture !== "" && user.profilePicture || "/person/noAvatar.png"
                             } alt="" className="profileUserImg" /> */}
@@ -285,7 +287,10 @@ const Profile = () => {
                             {/* <img src={`data:image/jpeg;base64,${user.profilePicture}`} alt="Profile" /> */}
 
                             {/* エンコードした画像を取得し表示 */}
-                            <img src={user.profilePicture} alt="Profile" className="profileUserImg" />
+
+                            <img src={user.profilePicture
+                                ? user.profilePicture
+                                : PUBLIC_FOLDER + "person/noAvatar.png"} alt="Profile" className="profileUserImg" />
 
 
                             {currentUser._id === user._id && (

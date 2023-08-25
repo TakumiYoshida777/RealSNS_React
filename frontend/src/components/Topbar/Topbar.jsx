@@ -114,7 +114,10 @@ const Topbar = ({ openFilterMessage }) => {
                         <span className="topbarIconBadge">2</span>
                     </div> */}
                     <Link to={`/profile/${user.username}`}>
-                        <img src={user.profilePicture} alt="" className="topbarImg" />
+                        <img src={
+                            user.profilePicture
+                                ? user.profilePicture
+                                : PUBLIC_FOLDER + "person/noAvatar.png"} alt="" className="topbarImg" />
                     </Link>
                 </div>
             </div>
