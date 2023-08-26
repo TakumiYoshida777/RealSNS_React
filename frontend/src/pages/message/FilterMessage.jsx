@@ -11,7 +11,7 @@ const FilterMessage = ({ targetMessageData, targetMessageUserName, setOpenFilter
     const title = useRef();
     const message = useRef();
     const noRead = targetMessageData.filter(data => data.read === false);
-    console.log(noRead, "noRead");
+    // console.log(noRead, "noRead");
 
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const FilterMessage = ({ targetMessageData, targetMessageUserName, setOpenFilter
 
     const sendMessage = async (e) => {
         e.preventDefault();
-        const semdData = {
+        const sendData = {
             userId: user._id,
             userName: user.username,
             recipientId: sendUserData.userId,
@@ -41,10 +41,10 @@ const FilterMessage = ({ targetMessageData, targetMessageUserName, setOpenFilter
             message: message.current.value,
             sendPicture: "",
         };
-        console.log(semdData, "semdData");
-        console.log(user, "user");
+        // console.log(sendData, "sendData");
+        // console.log(user, "user");
         try {
-            await axios.put(`/messages/${user._id}/send`, semdData);
+            await axios.put(`/messages/${user._id}/send`, sendData);
         } catch (error) {
             console.log(error.message, "リクエストに失敗しました");
         }

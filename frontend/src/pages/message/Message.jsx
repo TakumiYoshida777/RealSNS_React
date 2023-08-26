@@ -35,7 +35,7 @@ const Message = ({ messageAreaState, setMessageAreaState, profileUser }) => {
 
     const sendMessage = async (e) => {
         e.preventDefault();
-        const semdData = {
+        const sendData = {
             userId: currentUser._id,
             userName: currentUser.username,
             recipientId: profileUser._id,
@@ -47,7 +47,7 @@ const Message = ({ messageAreaState, setMessageAreaState, profileUser }) => {
             sendPicture: "",
         };
         try {
-            const response = await axios.put(`/messages/${currentUser._id}/send`, semdData);
+            const response = await axios.put(`/messages/${currentUser._id}/send`, sendData);
         } catch (error) {
             console.log(error.message, "リクエストに失敗しました");
         }

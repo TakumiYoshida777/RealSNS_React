@@ -98,7 +98,7 @@ const MyMessage = () => {
         }
 
     };
-    console.log(messageData, "messageData");
+    // console.log(messageData, "messageData");
     return (
         <div className="MyMessage">
             <Topbar openFilterMessage={openFilterMessage} />
