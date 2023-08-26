@@ -26,8 +26,8 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
         const fileSizeInBytes = selectFile.size;
         const fileNameParts = selectFile.name.split('.');
         const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase().toString();
-        console.log("拡張子:", fileExtension);
-        console.log("元ファイルのバイト数:", fileSizeInBytes, "bytes");
+        // console.log("拡張子:", fileExtension);
+        // console.log("元ファイルのバイト数:", fileSizeInBytes, "bytes");
         if (selectFile.size < 50000) {
             if (selectFile) {
                 const reader = new FileReader();
@@ -84,9 +84,9 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                         const base64Data = uri.split(',')[1];
                         const byteSize = Math.ceil(base64Data.length);
                         const kilobyteSize = byteSize / 1024;
-                        console.log("------complete!! resized image------");
+                        // console.log("------complete!! resized image------");
                         // console.log("リサイズ", uri);
-                        console.log("推定サイズ:", kilobyteSize, "KB");
+                        // console.log("推定サイズ:", kilobyteSize, "KB");
                         if (kilobyteSize < 50) {
                             setSelectedImage(uri);
                             setFile(uri); // ここでfileをセットする
