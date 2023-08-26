@@ -172,18 +172,19 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                     <div className="editTitleWrapper">
                         <h3 className="editTitle">プロフィール写真</h3>
                         <label className="shareOption" htmlFor="profilePictureFile">
-                            <span className="editButton">編集</span>
-                            <input type="file"
-                                id="profilePictureFile"
-                                accept="*"
-                                style={{ display: "none" }}
-                                onChange={handleImageChange} />
-                            {/* TODO:テスト */}
-                            <div className="selectImage">
-                                {selectedImage && <img src={selectedImage} alt="Selected" />}
+                            <div>
+                                <span className="editButton">編集</span>
+                                <input type="file"
+                                    id="profilePictureFile"
+                                    accept="*"
+                                    style={{ display: "none" }}
+                                    onChange={handleImageChange} />
                             </div>
-                            {/* テストここまで */}
                         </label>
+                        {/* 選択中の画像をリアルタイムで表示 */}
+                        <div className="selectImage">
+                            {selectedImage && <img src={selectedImage} alt="Selected" />}
+                        </div>
                     </div>
                     <img src="" alt="" />
                 </div>
