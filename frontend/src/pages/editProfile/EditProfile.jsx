@@ -47,7 +47,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 } else {
                     resizedImageSize = 50;
                 }
-                console.log("圧縮後==>", resizedImageSize, "KB");
+                // console.log("圧縮後==>", resizedImageSize, "KB");
             } else if (selectFile.size < 3000000) {
                 // setResizedImageSize(30); // 圧縮後サイズ
                 if (fileExtension === "webp") {
@@ -55,7 +55,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 } else {
                     resizedImageSize = 30;
                 }
-                console.log("圧縮後==>", resizedImageSize, "KB");
+                // console.log("圧縮後==>", resizedImageSize, "KB");
             } else if (selectFile.size < 5000000) {
                 // setResizedImageSize(20); // 圧縮後サイズ
                 if (fileExtension === "webp") {
@@ -63,11 +63,11 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 } else {
                     resizedImageSize = 20;
                 }
-                console.log("圧縮後==>", resizedImageSize, "KB");
+                // console.log("圧縮後==>", resizedImageSize, "KB");
             } else {
                 // setResizedImageSize(10); // 圧縮後サイズ
                 resizedImageSize = 10;
-                console.log("圧縮後==>", resizedImageSize, "KB");
+                // console.log("圧縮後==>", resizedImageSize, "KB");
             }
             Resizer.imageFileResizer(
                 selectFile, // アップロードされたファイル
