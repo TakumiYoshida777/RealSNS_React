@@ -49,7 +49,7 @@ const Share = ({ setPostCatch }) => {
                         resizedImageSize = 35;
                     }
                     console.log("圧縮後==>", resizedImageSize, "KB");
-                } else if (selectFile.size < 3000000) {
+                } else if (selectFile.size < 5000000) {
                     // setResizedImageSize(30); // 圧縮後サイズ
                     if (fileExtension === "webp") {
                         resizedImageSize = 15;
@@ -57,7 +57,7 @@ const Share = ({ setPostCatch }) => {
                         resizedImageSize = 30;
                     }
                     console.log("圧縮後==>", resizedImageSize, "KB");
-                } else if (selectFile.size < 5000000) {
+                } else if (selectFile.size < 10000000) {
                     // setResizedImageSize(20); // 圧縮後サイズ
                     if (fileExtension === "webp") {
                         resizedImageSize = 15;
@@ -67,13 +67,13 @@ const Share = ({ setPostCatch }) => {
                     console.log("圧縮後==>", resizedImageSize, "KB");
                 } else {
                     // setResizedImageSize(10); // 圧縮後サイズ
-                    resizedImageSize = 10;
+                    resizedImageSize = 15;
                     console.log("圧縮後==>", resizedImageSize, "KB");
                 }
                 Resizer.imageFileResizer(
                     selectFile, // アップロードされたファイル
-                    500, // リサイズ後の幅
-                    700, // リサイズ後の高さ
+                    700, // リサイズ後の幅
+                    1000, // リサイズ後の高さ
                     'JPEG', // フォーマット
                     resizedImageSize, // 圧縮後のファイルサイズ（キロバイト）
                     0, // 回転（0度）
@@ -94,7 +94,6 @@ const Share = ({ setPostCatch }) => {
                             } else {
                                 alert("画像サイズが大きすぎます");
                             }
-
                         }
                     },
                     'base64' // データURIの形式
