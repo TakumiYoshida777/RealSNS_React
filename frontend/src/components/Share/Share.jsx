@@ -5,16 +5,17 @@ import { useContext } from 'react';
 import { AuthContext } from '../../State/AuthContext';
 import axios from 'axios';
 import Resizer from "react-image-file-resizer";
+// import { changeFileExtension } from '../../common/imgaeData';
 
 const Share = ({ setPostCatch }) => {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user } = useContext(AuthContext);
     const desc = useRef();
     const [file, setFile] = useState(null);
-    //選択した画像の元のデータサイズを保持
-    const [selectedImageSize, setSelectedImageSize] = useState(null);
     //選択中の画像をエンコードしたデータ
     const [selectedImage, setSelectedImage] = useState(null);
+    //圧縮後の画像サイズ（キロバイト）
+    // const [resizedImageSize, setResizedImageSize] = useState(30);
 
     /**
      * 選択された背景画像をリサイズする
@@ -22,32 +23,59 @@ const Share = ({ setPostCatch }) => {
      */
     const handleImageChange = (event) => {
         const selectFile = event.target.files[0];
-
         if (selectFile) {
-            // console.log(selectFile);
-            const fileName = selectFile.name;
-            const fileExtension = fileName.match(/\.([^.]+)$/)[1].toUpperCase();//拡張子を取得
-            // console.log("拡張子:", fileExtension);
-
-            //元の画像サイズを取得
-            setSelectedImageSize(selectFile.size);
-
-            if (selectedImageSize < 50000) {
-                //取得した画像ファイルが50キロバイト以下
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    setSelectedImage(e.target.result);
-                    setFile(selectFile); // ここでfileをセットする
-                };
-                reader.readAsDataURL(selectFile);//エンコードする
+            const fileSizeInBytes = selectFile.size;
+            const fileNameParts = selectFile.name.split('.');
+            const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase().toString();
+            console.log("拡張子:", fileExtension);
+            console.log("元ファイルのバイト数:", fileSizeInBytes, "bytes");
+            if (selectFile.size < 50000) {
+                if (selectFile) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        setSelectedImage(e.target.result);
+                        setFile(selectFile); // ここでfileをセットする
+                    };
+                    reader.readAsDataURL(selectFile);//エンコードする
+                }
             } else {
                 // 取得した画像データが51キロバイト以上
+                var resizedImageSize = 30;
+                if (selectFile.size < 1000000) {
+                    // setResizedImageSize(40); // 圧縮後サイズ
+                    if (fileExtension === "webp") {
+                        resizedImageSize = 15;
+                    } else {
+                        resizedImageSize = 35;
+                    }
+                    console.log("圧縮後==>", resizedImageSize, "KB");
+                } else if (selectFile.size < 3000000) {
+                    // setResizedImageSize(30); // 圧縮後サイズ
+                    if (fileExtension === "webp") {
+                        resizedImageSize = 15;
+                    } else {
+                        resizedImageSize = 30;
+                    }
+                    console.log("圧縮後==>", resizedImageSize, "KB");
+                } else if (selectFile.size < 5000000) {
+                    // setResizedImageSize(20); // 圧縮後サイズ
+                    if (fileExtension === "webp") {
+                        resizedImageSize = 15;
+                    } else {
+                        resizedImageSize = 20;
+                    }
+                    console.log("圧縮後==>", resizedImageSize, "KB");
+                } else {
+                    // setResizedImageSize(10); // 圧縮後サイズ
+                    resizedImageSize = 10;
+                    console.log("圧縮後==>", resizedImageSize, "KB");
+                }
                 Resizer.imageFileResizer(
                     selectFile, // アップロードされたファイル
-                    1000, // リサイズ後の幅
-                    1000, // リサイズ後の高さ
-                    `${fileExtension}`, // フォーマット
-                    30, // 圧縮後のファイルサイズ（キロバイト）
+                    500, // リサイズ後の幅
+                    700, // リサイズ後の高さ
+                    'JPEG', // フォーマット
+                    resizedImageSize, // 圧縮後のファイルサイズ（キロバイト）
                     0, // 回転（0度）
                     (uri) => {
                         // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
@@ -66,14 +94,17 @@ const Share = ({ setPostCatch }) => {
                             } else {
                                 alert("画像サイズが大きすぎます");
                             }
+
                         }
                     },
                     'base64' // データURIの形式
                 );
             }
+        } else {
+            return;
         }
+
     };
-    // console.log("元ファイルのバイト数:", selectedImageSize, "bytes");
 
     const handleSubmit = async (e) => {
         e.preventDefault();

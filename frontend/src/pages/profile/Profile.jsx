@@ -46,6 +46,10 @@ const Profile = () => {
 
     //メッセージのモーダルの表示制御
     const [messageAreaState, setMessageAreaState] = useState(false);
+
+    //圧縮後の画像サイズ（キロバイト）
+    // const [resizedImageSize, setResizedImageSize] = useState(30);
+
     const params = useParams();
 
     const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -167,6 +171,9 @@ const Profile = () => {
     const handleImageChange = (event) => {
         const selectFile = event.target.files[0];
         const fileSizeInBytes = selectFile.size;
+        const fileNameParts = selectFile.name.split('.');
+        const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase().toString();
+        console.log("拡張子:", fileExtension);
         console.log("元ファイルのバイト数:", fileSizeInBytes, "bytes");
         if (fileSizeInBytes < 50000) {
             if (selectFile) {
@@ -178,12 +185,43 @@ const Profile = () => {
                 reader.readAsDataURL(selectFile);//エンコードする
             }
         } else {
+            // 取得した画像データが51キロバイト以上
+            var resizedImageSize = 30;
+            if (selectFile.size < 1000000) {
+                // setResizedImageSize(40); // 圧縮後サイズ
+                if (fileExtension === "webp") {
+                    resizedImageSize = 15;
+                } else {
+                    resizedImageSize = 40;
+                }
+                console.log("圧縮後==>", resizedImageSize, "KB");
+            } else if (selectFile.size < 3000000) {
+                // setResizedImageSize(30); // 圧縮後サイズ
+                if (fileExtension === "webp") {
+                    resizedImageSize = 15;
+                } else {
+                    resizedImageSize = 30;
+                }
+                console.log("圧縮後==>", resizedImageSize, "KB");
+            } else if (selectFile.size < 5000000) {
+                // setResizedImageSize(20); // 圧縮後サイズ
+                if (fileExtension === "webp") {
+                    resizedImageSize = 15;
+                } else {
+                    resizedImageSize = 20;
+                }
+                console.log("圧縮後==>", resizedImageSize, "KB");
+            } else {
+                // setResizedImageSize(10); // 圧縮後サイズ
+                resizedImageSize = 10;
+                console.log("圧縮後==>", resizedImageSize, "KB");
+            }
             Resizer.imageFileResizer(
                 selectFile, // アップロードされたファイル
                 1000, // リサイズ後の幅
-                1000, // リサイズ後の高さ
+                700, // リサイズ後の高さ
                 'JPEG', // フォーマット
-                10, // 圧縮後のファイルサイズ（キロバイト）
+                resizedImageSize, // 圧縮後のファイルサイズ（キロバイト）
                 0, // 回転（0度）
                 (uri) => {
                     // リサイズされた画像のデータURIが渡されるので、これを保存または表示する処理を行う
@@ -194,7 +232,7 @@ const Profile = () => {
                         const byteSize = Math.ceil(base64Data.length);
                         const kilobyteSize = byteSize / 1024;
                         console.log("------complete!! resized image------");
-                        // console.log("リサイズ", uri);
+                        console.log("リサイズ", uri);
                         console.log("推定サイズ:", kilobyteSize, "KB");
                         if (kilobyteSize < 50) {
                             setSelectedImage(uri);
@@ -208,6 +246,8 @@ const Profile = () => {
             );
         }
     };
+    // console.log("圧縮後【外】==>", resizedImageSize, "KB");
+
     //背景画像を更新する
     const updateCoverImg = async () => {
 
