@@ -13,7 +13,7 @@ const RandomUser = ({ user, onClickMenu }) => {
             {currentUser._id !== user._id && !myFollowings.includes(user._id) &&
                 <Link to={`/profile/${user.username}`} className="friendLink" onClick={() => onClickMenu()}>
                     <li className="sidebarFriend">
-                        <img src={user.profilePicture !== "" && user.profilePicture || "/person/noAvatar.png"} alt="" className="sidebarFriendImg" />
+                        <img src={user.profilePicture !== "" && user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"} alt="" className="sidebarFriendImg" />
                         <span className="sidebarFriendName">
                             {user.username}
                         </span>
