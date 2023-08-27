@@ -17,6 +17,9 @@ const Share = ({ setPostCatch }) => {
     //圧縮後の画像サイズ（キロバイト）
     // const [resizedImageSize, setResizedImageSize] = useState(30);
 
+    //投稿中の状態を保持
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     /**
      * 選択された背景画像をリサイズする
      * @param {*} event 
@@ -107,6 +110,10 @@ const Share = ({ setPostCatch }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (isSubmitting) {
+            return; // すでに投稿が送信されている場合、再送信を無効化
+        }
+        setIsSubmitting(true); // 送信中フラグをセット
         const newPost = {
             userId: user._id,
             desc: desc.current.value,
@@ -138,6 +145,7 @@ const Share = ({ setPostCatch }) => {
         setPostCatch((postCatch) => !postCatch);
         setFile(null);
         setSelectedImage(null);
+        setIsSubmitting(false); // 送信中フラグを解除
     };
     return (
         <div className="share">
