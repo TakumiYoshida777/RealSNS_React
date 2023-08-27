@@ -44,7 +44,7 @@ const UserScema = new mongoose.Schema({
     //概要欄
     desc: {
         type: String,
-        max: 70,
+        max: 120,
     },
     city: {
         type: String,

@@ -108,7 +108,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
         const updatedUser = {
             userId: user._id,
-            profilePicture: selectedImage,
+            profilePicture: selectedImage ? selectedImage : user.profilePicture,
             desc: editDesc.current.value,
             city: editCity.current.value,
             age: editAge.current.value,
@@ -139,7 +139,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
         if (user._id === res.data._id) {
             //テキストの更新
             try {
-                console.log("プロフィールとログイン者が同一人物");
+                // console.log("プロフィールとログイン者が同一人物");
 
                 const updateResponse = await axios.put(`/users/${user._id}`, updatedUser);
                 setNewText(updateResponse.data.desc);
@@ -193,6 +193,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                     <div className="profile">
                         <textarea className="editInput textarea"
                             rows="10"
+                            maxLength="120"  // 最大文字数を設定
                             onChange={(e) => editTextState(e)}
                             ref={editDesc}
                             defaultValue={newText}></textarea>

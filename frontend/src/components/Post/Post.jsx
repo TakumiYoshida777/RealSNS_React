@@ -146,7 +146,6 @@ const Post = ({ post, setPostCatch }) => {
             console.log(err, "お気に入り解除のリクエストに失敗しました");
         }
     };
-    // console.log(user);
     return (
         <div className="post" onClick={() => closeMenu()}>
             {openComment && <ModalComment
@@ -200,7 +199,6 @@ const Post = ({ post, setPostCatch }) => {
                             <button className="updateBtn" type="submit">更新</button>
                         </form>
                     }
-
                     <img src={post.img} alt="" className="postImg" />
                 </div>
                 <div className="postBottom">
