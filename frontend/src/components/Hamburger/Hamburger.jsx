@@ -18,7 +18,6 @@ const Hamburger = () => {
     const onHamburgerMenu = () => {
         setBoolToggle(prevState => !prevState);
         if (!boolToggle) {
-            console.log("in boolToggle");
             setHamburgerRotate({
                 ...hamburgerRotate,
                 span1: 135,
