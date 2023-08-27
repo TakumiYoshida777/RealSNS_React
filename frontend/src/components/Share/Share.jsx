@@ -46,7 +46,7 @@ const Share = ({ setPostCatch }) => {
                     if (fileExtension === "webp") {
                         resizedImageSize = 15;
                     } else {
-                        resizedImageSize = 35;
+                        resizedImageSize = 40;
                     }
                     // console.log("圧縮後==>", resizedImageSize, "KB");
                 } else if (selectFile.size < 5000000) {
@@ -72,8 +72,8 @@ const Share = ({ setPostCatch }) => {
                 }
                 Resizer.imageFileResizer(
                     selectFile, // アップロードされたファイル
-                    700, // リサイズ後の幅
-                    1000, // リサイズ後の高さ
+                    400, // リサイズ後の幅
+                    600, // リサイズ後の高さ
                     'JPEG', // フォーマット
                     resizedImageSize, // 圧縮後のファイルサイズ（キロバイト）
                     0, // 回転（0度）
