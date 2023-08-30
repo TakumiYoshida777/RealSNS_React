@@ -44,7 +44,7 @@ const Follows = ({ profileUser }) => {
                                 <img
                                     src={
                                         user.profilePicture === "" || !user.profilePicture
-                                            ? "/person/noAvatar.png"
+                                            ? PUBLIC_FOLDER + "/person/noAvatar.png"
                                             : user.profilePicture
                                     }
                                     alt=""

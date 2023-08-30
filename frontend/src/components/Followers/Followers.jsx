@@ -45,7 +45,7 @@ const Followers = ({ profileUser, userFollowers }) => {
                             <div className="followUser" onClick={() => screenTransitionProfile(user.username)}>
                                 <img src={
                                     user.profilePicture === "" || !user.profilePicture
-                                        ? "/person/noAvatar.png"
+                                        ? PUBLIC_FOLDER + "/person/noAvatar.png"
                                         : user.profilePicture
                                 } alt="" className="followerImg" />
                                 <h4 className="username">{user.username}</h4>

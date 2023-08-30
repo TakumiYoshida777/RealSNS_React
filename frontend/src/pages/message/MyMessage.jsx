@@ -118,7 +118,7 @@ const MyMessage = () => {
                                         <div className="sendUser">
                                             <div className="sender">
                                                 <Link to={`/profile/${data.userName}`}>
-                                                    <img src={data.profilePicture} className="senderPicture" />
+                                                    <img src={data.profilePicture ? data.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} className="senderPicture" />
                                                 </Link>
 
                                                 {data.userName === user.username
