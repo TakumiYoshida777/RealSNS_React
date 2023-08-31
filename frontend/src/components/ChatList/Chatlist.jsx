@@ -7,14 +7,13 @@ const Chatlist = ({ filterChat, sendCatch, openFilterMessage }) => {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user } = useContext(AuthContext);
     const [chatlist, setChatList] = useState([]);
-
+    console.log(chatlist);
     useEffect(() => {
         const getMessage = async () => {
             try {
                 const response = await axios.get(`/messages/${user._id}/chats`);
                 // 返ってきたデータから自分を除外し、更に新しいメッセージを持つデータを上位になるように並び替え
                 const filteredData = response.data
-                    // .filter((message) => message.userId !== user._id)
                     .sort((message1, message2) => {
                         return new Date(message2.date) - new Date(message1.date);
                     });
@@ -41,7 +40,7 @@ const Chatlist = ({ filterChat, sendCatch, openFilterMessage }) => {
                                 onClick={() => filterChat(chat)}
                                 className="chat" >
                                 <div className="chatImgWrap">
-                                    <img src={chat.profilePicture} className="senderPicture" />
+                                    <img src={chat.profilePicture ? chat.profilePicture : PUBLIC_FOLDER + "/person/noAvatar.png"} className="senderPicture" />
                                     {!chat.read && user.username !== chat.userName && <div className="readMark"></div>}
                                 </div>
                                 {user.username === chat.userName

@@ -12,6 +12,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
     const editAge = useRef();
     const username = useParams().username;
     const { updateUser } = useContext(AuthContext);
+    const [profileUserData, setProfileUserData] = useState(null);
 
     const [file, setFile] = useState(user.profilePicture);
 
@@ -123,15 +124,14 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
             // console.log(selectedImage, "selectedImageエンコード済みのはず");
             updatedUser.img = selectedImage;
-
-
+            debugger;
             try {
-                const res = await axios.post('/upload', profileData);
-                console.log(res);
-            } catch (error) {
-                console.error('Error!!! uploading image:', error);
-                alert("予期せぬエラー：対象の画像データがアップロードできません。別の画像をアップロードしてください。\n※画像サイズを小さくするとアップロードができることがあります。");
+                await axios.post('/upload', profileData);
+                console.log("upload成功");
+            } catch (err) {
+                console.log("upload失敗", err);
             }
+
         }
 
         const res = await axios.get(`/users?username=${username}`);
@@ -154,6 +154,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                     const newProfilePicture = updateResponse.data.profilePicture;
                     const newDesc = updateResponse.data.desc;
                     updateUser(newProfilePicture, newDesc);
+                    await axios.put(`messages/${user._id}/update_send_pictures`, { profilePicture: updateResponse.data.profilePicture });
                 }
 
             } catch (err) {
@@ -164,6 +165,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
         }
 
         handleEditBtn();
+
     };
     return (
         <div className="modal" >
