@@ -37,12 +37,12 @@ const Login = () => {
                         </p>
                         <input type="email"
                             className="loginInput"
-                            placeholder="Eメール"
+                            placeholder="Eメール（適当でOK）"
                             required
                             ref={email} />
                         <input type="password"
                             className="loginInput"
-                            placeholder="パスワード"
+                            placeholder="パスワード（123456でOK　※5桁以上）"
                             required
                             minLength="5"
                             ref={password} />

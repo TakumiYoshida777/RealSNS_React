@@ -76,6 +76,17 @@
     margin-bottom: 0.5rem;
 }
 
+.sidebarFriendList {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.sidebarFriendBtmSpase {
+    height: 200px;
+}
+
+
+
 /*******
 **スマホ縦**
 ********/

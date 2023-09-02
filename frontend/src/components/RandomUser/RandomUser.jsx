@@ -20,6 +20,7 @@ const RandomUser = ({ user, onClickMenu }) => {
                     </li>
                 </Link>
             }
+
         </>
 
     );
