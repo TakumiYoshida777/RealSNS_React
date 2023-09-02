@@ -97,6 +97,8 @@ const Sidebar = ({ onClickMenu }) => {
                     {randomUser.map((user) => (
                         <RandomUser user={user} key={user._id} onClickMenu={onClickMenu} />
                     ))}
+                    <li className="sidebarFriendBtmSpase"></li>
+
                 </ul>
             </div>
         </div>
