@@ -16,6 +16,7 @@ export const loginCall = async (user, dispatch) => {
         dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
 
     } catch (err) {
+        alert("ログイン情報が見つかりませんでした。\nアカウントを作成するか登録済みの情報を入力してください。");
         dispatch({ type: "LOGIN_ERROR", payload: err });
     }
 };
