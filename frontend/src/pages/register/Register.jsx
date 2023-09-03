@@ -63,16 +63,14 @@ const Register = () => {
                             placeholder="ユーザー名"
                             required
                             ref={username} />
-
                         <input type="email"
                             className="loginInput"
-                            placeholder="Eメール"
+                            placeholder="実在しないEメール"
                             required
                             ref={email} />
-
                         <input type="password"
                             className="loginInput"
-                            placeholder="パスワード"
+                            placeholder="パスワード ５桁以上"
                             required
                             minLength="5"
                             ref={password} />
