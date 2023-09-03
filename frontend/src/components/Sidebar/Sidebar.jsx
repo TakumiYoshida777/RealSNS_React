@@ -7,7 +7,7 @@ import { AuthContext } from '../../State/AuthContext';
 import axios from 'axios';
 import RandomUser from '../RandomUser/RandomUser';
 import Rightbar from '../Rightbar/Rightbar';
-
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 const Sidebar = ({ onClickMenu }) => {
     const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -89,6 +89,12 @@ const Sidebar = ({ onClickMenu }) => {
                     <li className="sidebarListItem" onClick={() => logoutConfirm()}>
                         <Logout className="sidebarIcon" />
                         <span className="sidebarListItemText">ログアウト</span>
+                    </li>
+                    <li>
+                        <Link to={`/customer`} style={{ textDecoration: "none", color: "black" }} className="sidebarListItem">
+                            <SupportAgentIcon className="sidebarIcon" />
+                            <span className="sidebarListItemText">機能一覧</span>
+                        </Link>
                     </li>
                 </ul>
                 <hr className="sidebarHr" />

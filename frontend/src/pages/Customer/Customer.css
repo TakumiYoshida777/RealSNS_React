@@ -1,0 +1,39 @@
+.customer {
+    background-color: #f8fcff;
+    color: #222222;
+    padding: 0 1rem;
+}
+
+.customerTitle {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.customerListTitle {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+.customerList {
+    margin-bottom: 2rem;
+}
+
+.CstomerItem {
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.CstomerItem::before {
+    content: "";
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #222222;
+    border-radius: 50%;
+}

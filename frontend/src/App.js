@@ -8,6 +8,7 @@ import { AuthContext } from "./State/AuthContext";
 import EditProfile from "./pages/editProfile/EditProfile";
 import MyMessage from "./pages/message/MyMessage";
 import Bookmark from "./pages/Bookmark/Bookmark";
+import Customer from "./pages/Customer/Customer";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Profile/:username/edit" element={<EditProfile />} />
         <Route path="/mymessage/:username/" element={<MyMessage />} />
         <Route path="/bookmark" element={<Bookmark />} />
+        <Route path="/customer" element={<Customer />} />
       </Routes>
     </Router>
   );
