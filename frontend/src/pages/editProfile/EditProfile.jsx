@@ -124,7 +124,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
 
             // console.log(selectedImage, "selectedImageエンコード済みのはず");
             updatedUser.img = selectedImage;
-            debugger;
             try {
                 await axios.post('/upload', profileData);
                 console.log("upload成功");
@@ -154,7 +153,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                     const newProfilePicture = updateResponse.data.profilePicture;
                     const newDesc = updateResponse.data.desc;
                     updateUser(newProfilePicture, newDesc);
-                    await axios.put(`messages/${user._id}/update_send_pictures`, { profilePicture: updateResponse.data.profilePicture });
+                    // await axios.put(`messages/${user._id}/update_send_pictures`, { profilePicture: updateResponse.data.profilePicture });
                 }
 
             } catch (err) {
