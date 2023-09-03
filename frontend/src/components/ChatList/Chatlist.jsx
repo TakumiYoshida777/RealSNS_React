@@ -7,7 +7,6 @@ const Chatlist = ({ filterChat, sendCatch, openFilterMessage }) => {
     const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user } = useContext(AuthContext);
     const [chatlist, setChatList] = useState([]);
-    console.log(chatlist);
     useEffect(() => {
         const getMessage = async () => {
             try {
