@@ -23,6 +23,16 @@ const Login = () => {
         );
     };
 
+    const handleSubmitFreeAccount = (e) => {
+        e.preventDefault();
+        loginCall({
+            email: 'free@gmail.com',
+            password: '123456',
+        },
+            dispatch
+        );
+    };
+
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -31,6 +41,8 @@ const Login = () => {
                     <span className="loginDec"></span>
                 </div>
                 <div className="loginRight">
+
+
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
                         <p className="loginMsg">
                             ログインはこちら
@@ -49,12 +61,17 @@ const Login = () => {
                         <button className="loginButton">ログイン</button>
                         {/* <span className="loginForgot">パスワードを忘れた方へ</span> */}
                         <Link to="/register">
-                            <button className="loginRegisterBtn">アカウント作成</button>
+                            <button className="loginRegisterBtn">新規アカウント作成</button>
                         </Link>
                     </form>
+
+                    <form className="freeLoginBox" onSubmit={(e) => handleSubmitFreeAccount(e)}>
+                        <button className="useFreeAccountBtn">フリーアカウントを使用する</button>
+                    </form>
+                    <div className="mb">※誰でも自由に投稿、編集を行える<span className="accent">登録不要のフリーアカウント</span>です</div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

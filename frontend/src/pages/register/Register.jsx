@@ -46,6 +46,17 @@ const Register = () => {
             }
         }
     };
+
+    const handleSubmitFreeAccount = (e) => {
+        e.preventDefault();
+        loginCall({
+            email: 'free@gmail.com',
+            password: '123456',
+        },
+            dispatch
+        );
+    };
+
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -54,6 +65,7 @@ const Register = () => {
                     <span className="loginDec"></span>
                 </div>
                 <div className="loginRight">
+
                     <form className="loginBox" onSubmit={(e) => handleSubmit(e)}>
                         <p className="loginMsg">
                             新規登録はこちら
@@ -84,9 +96,13 @@ const Register = () => {
 
                         <button className="loginButton" type="submit">サインアップ</button>
                         <Link to="/login" className="loginBtn">
-                            <button className="loginRegisterBtn">ログイン</button>
+                            <button className="loginRegisterBtn">ログイン画面へ</button>
                         </Link>
                     </form>
+                    <form className="freeLoginBox" onSubmit={(e) => handleSubmitFreeAccount(e)}>
+                        <button className="useFreeAccountBtn">フリーアカウントを使用する</button>
+                    </form>
+                    <div className="mb">※誰でも自由に投稿、編集を行える<span className="accent">登録不要のフリーアカウント</span>です</div>
                 </div>
             </div>
         </div>

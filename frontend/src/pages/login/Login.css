@@ -74,6 +74,30 @@
     margin: 1rem 0 2rem;
 }
 
+.freeLoginBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.useFreeAccountBtn {
+    height: 50px;
+    width: 80%;
+    align-self: center;
+    border-radius: 10px;
+    border: none;
+    background-color: #3c8b8b;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.accent {
+    font-weight: 600;
+}
+
 .loginRegisterBtn {
     height: 50px;
     width: 80%;
