@@ -42,15 +42,13 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
             // 取得した画像データが51キロバイト以上
             var resizedImageSize = 30;
             if (selectFile.size < 1000000) {
-                // setResizedImageSize(40); // 圧縮後サイズ
                 if (fileExtension === "webp") {
                     resizedImageSize = 15;
                 } else {
-                    resizedImageSize = 50;
+                    resizedImageSize = 40;
                 }
                 // console.log("圧縮後==>", resizedImageSize, "KB");
             } else if (selectFile.size < 3000000) {
-                // setResizedImageSize(30); // 圧縮後サイズ
                 if (fileExtension === "webp") {
                     resizedImageSize = 15;
                 } else {
@@ -58,7 +56,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 }
                 // console.log("圧縮後==>", resizedImageSize, "KB");
             } else if (selectFile.size < 5000000) {
-                // setResizedImageSize(20); // 圧縮後サイズ
                 if (fileExtension === "webp") {
                     resizedImageSize = 15;
                 } else {
@@ -66,7 +63,6 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 }
                 // console.log("圧縮後==>", resizedImageSize, "KB");
             } else {
-                // setResizedImageSize(10); // 圧縮後サイズ
                 resizedImageSize = 10;
                 // console.log("圧縮後==>", resizedImageSize, "KB");
             }
