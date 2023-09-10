@@ -45,7 +45,7 @@ const EditProfile = ({ handleEditBtn, editTextState, newText, setNewText, profil
                 if (fileExtension === "webp") {
                     resizedImageSize = 15;
                 } else {
-                    resizedImageSize = 40;
+                    resizedImageSize = 50;
                 }
                 // console.log("圧縮後==>", resizedImageSize, "KB");
             } else if (selectFile.size < 3000000) {
