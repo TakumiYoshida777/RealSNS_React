@@ -13,7 +13,6 @@ const FilterMessage = ({ targetMessageData, targetMessageUserName, setOpenFilter
     const noRead = targetMessageData.filter(data => data.read === false);
     // console.log(noRead, "noRead");
 
-
     useEffect(() => {
         //未読を既読にする
         const editReadMessage = async () => {

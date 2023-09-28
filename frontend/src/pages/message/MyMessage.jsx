@@ -27,6 +27,7 @@ const MyMessage = () => {
         const getMessage = async () => {
             try {
                 const response = await axios.get(`/messages/${user._id}/read`);
+                console.log(response.data);
                 setMessageData(response.data.sort((message1, message2) => {
                     return new Date(message2.date) - new Date(message1.date);
                 }));

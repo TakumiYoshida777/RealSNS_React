@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Message = require("../models/Message");
 
 /**
- * 送られてきたメッセージリストを取得
+ * メッセージリストを取得
  * @param {string} 閲覧する人のID
  */
 router.get("/:id/read", async (req, res) => {
@@ -83,6 +83,34 @@ router.put("/:id/read", async (req, res) => {
     } catch (err) {
         return res.status(500).json("メッセージの既読に失敗しました");
     }
+});
+
+/**
+ * 送信者が自分以外の全てのメッセージを未読にする 
+ */
+router.put("/:id/noread", async (req, res) => {
+    try {
+        // req.params.id === recipientIdの条件がなりたつメッセージのMessageスキーマのreadをfalseにする
+
+        // const messages = await Message.find({ recipientId: req.params.id });
+        // messages.forEach((message) => {
+        //     if (message.recipientId === recipientId) {
+        //         message.read = false;
+        //     }
+        // });
+
+        // req.params.id が受信者の ID であることを確認し、それ以外のメッセージを未読にする
+        const recipientId = req.params.id;
+        await Message.updateMany({ recipientId: recipientId }, { read: false });
+        return res.status(200).json("メッセージを未読にしました");
+    } catch (err) {
+        return res.status(500).json("メッセージを未読にできませんでした");
+    }
+});
+
+router.put("/", async (req, res) => {
+    return res.status(200).json("テストに成功しました");
+
 });
 
 /**

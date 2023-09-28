@@ -68,7 +68,7 @@ const Login = () => {
                     <form className="freeLoginBox" onSubmit={(e) => handleSubmitFreeAccount(e)}>
                         <button className="useFreeAccountBtn">フリーアカウントを使用する</button>
                     </form>
-                    <div className="mb">※誰でも自由に投稿、編集を行える<span className="accent">登録不要のフリーアカウント</span>です</div>
+                    <div className="mb useFreeAccountBtnMessage">※誰でも自由に投稿、編集を行える<span className="accent">登録不要のフリーアカウント</span>です。</div>
                 </div>
             </div>
         </div >

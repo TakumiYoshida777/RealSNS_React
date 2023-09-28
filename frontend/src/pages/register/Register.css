@@ -100,6 +100,12 @@
     width: 100%;
 }
 
+.useFreeAccountBtnMessage {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+
 /*******
 **スマホ縦**
 ********/
