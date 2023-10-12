@@ -9,7 +9,6 @@ const Customer = () => {
             <Topbar />
             <div className="homeContainer">
                 <Hamburger />
-
                 <div className="customer">
                     <h2 className="customerTitle">機能一覧</h2>
                     <ul className="customerList">
