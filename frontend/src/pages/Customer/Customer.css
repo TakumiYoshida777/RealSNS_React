@@ -2,7 +2,10 @@
     background-color: #f8fcff;
     color: #222222;
     padding: 0 1rem;
+    flex: 100%;
 }
+
+
 
 .customerTitle {
     font-size: 1.5rem;
