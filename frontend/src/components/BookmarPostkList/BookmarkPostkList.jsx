@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import './BookmarPostkList.css';
+import './BookmarkPostList.css';
 import { AuthContext } from '../../State/AuthContext';
 import axios from 'axios';
 
-const BookmarPostkList = () => {
+const BookmarkPostList = () => {
     const { user } = useContext(AuthContext);
     console.log(user._id, "user._id");
 
@@ -11,10 +11,10 @@ const BookmarPostkList = () => {
         const getBookmarkPosts = async () => {
             try {
                 const response = await axios.get(`posts/${user._id}/bookmarked-posts`);
-                const data = response.data;
-                const jsonData = JSON.stringify(data);
-                console.log(response, "response ");
-                console.log(jsonData, "jsonData ");
+                // const data = response.data;
+                // const jsonData = JSON.stringify(data);
+                // console.log(response, "response ");
+                // console.log(jsonData, "jsonData ");
             } catch (err) {
                 console.log(err, "ブックマークの取得リクエストに失敗しました");
             }
@@ -23,8 +23,8 @@ const BookmarPostkList = () => {
     }, []);
 
     return (
-        <div>BookmarPostkList</div>
+        <div>BookmarkPostList</div>
     );
 };
 
-export default BookmarPostkList;
+export default BookmarkPostList;

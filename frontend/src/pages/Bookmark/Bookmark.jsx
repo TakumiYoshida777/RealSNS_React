@@ -18,7 +18,7 @@ const Bookmark = () => {
             <Topbar />
             <div className="homeContainer">
                 <Hamburger />
-                {/* <BookmarPostkList /> */}
+                {/* <BookmarkPostList /> */}
                 <Timeline pathName={pathName} />
                 {/* {!isMobile && <Rightbar />} */}
             </div>
